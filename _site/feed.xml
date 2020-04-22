@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>API Document</title>
+    <description>^_^</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 22 Apr 2020 17:27:14 +0900</pubDate>
+    <lastBuildDate>Wed, 22 Apr 2020 17:27:14 +0900</lastBuildDate>
+    <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>About  Workqueue</title>
+        <description>&lt;h2 id=&quot;1-thread&quot;&gt;#1 Thread&lt;/h2&gt; &lt;p&gt;Process를 설계하다보면, 실시간처리, Blocking I/O처리, 단일Context등의 관리를 위해 Thread를 사용한 병렬처리를 요구하는 경우가 발생한다.&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;Thread가 요구되는 간단한 예&lt;/p&gt; &lt;/blockquote&gt; &lt;p&gt;&lt;img src=&quot;../images/audiofile_speaker.png&quot; alt=&quot;audiofile_speaker&quot; /&gt;&lt;/p&gt; &lt;p&gt;프로그램이 구동되면 하나의 오디오 파일에서 2개의 출력 장치로 Sound를 출력하는 아래의 예시 코드를 보자&lt;/p&gt; &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;open_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;read_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;write_audio1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;write_audio2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt; &lt;p&gt;진입점에서 오디오파일을 열고 파일의 데이터를 전부 읽을때까지 while루프 안에서 1번, 2번...</description>
+        <pubDate>Tue, 21 Apr 2020 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/about-workqueue/</link>
+        <guid isPermaLink="true">http://localhost:4000/about-workqueue/</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

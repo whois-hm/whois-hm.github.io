@@ -1,0 +1,43 @@
+# Site settings
+title: API Document
+description: ^_^
+baseurl: 
+url: "https://github.com/whois-hm/whois-hm.github.io.git"
+
+# User settings
+username: hmkwon
+user_description: ^_^
+email: khm767@gmail.com
+twitter_username: 
+github_username:  
+gplus_username:  
+disqus_username: 
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:title/
+
+
+# html minify
+compress_html:
+  clippings: all
+  comments: all
+  endings: []
+  profile: false
+
+# Links to include in menu navigation
+# For external links add external: true
+links:
+  - title: Home
+    url: /
+  - title: Series
+    url: /series
+  - title: Tags
+    url: /tags
+  - title: About Me
+    url: /about
+
+# exclude my node related stuff
+exclude: ['package.json', 'src', 'node_modules']
+gem "jekyll-admin", group: :jekyll_plugins
