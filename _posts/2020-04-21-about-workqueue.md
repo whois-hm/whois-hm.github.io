@@ -162,3 +162,97 @@ file 또한 System에 존재하는 유일한 Resource로 볼 수 있다.
 지금까지 수신자 역할만 해오던 출력장치Thread에 요청자 기능을 추가하고 요청기능만 수행하던 MainThread에 수신기능을 추가하면
 위 내용을 모두 만족한다.
 ![com](../images/com.png)
+
+
+### 이제 위의 구조설계를 코드로 표현해보자
+<center>Main.cpp</center>
+{% highlight c++ %}
+    void main()
+    {
+      /*MainThread's Meta data 생성*/		
+     /*출력할 오디오 파일 Open */		
+     open_file();                                            
+     /*출력 Thread 생성*/		 
+     output_thread_audio1_start();
+     output_thread_audio2_start();
+		 
+    /*Main Loop*/
+     while(1)
+     {
+      int timeout = 0;
+      /*Event 수신대기(여기서 "timeout"을 0으로 설정하였기 때문에 Event 발생까지
+           Block되지 않고 Event수신 여부만 확인하고 바로 Return)*/
+      int result = workqueue_recv(timeout);
+      if(result == timeout_occur)
+      {
+       /*수신된 Event가 없는경우 Data를 얻어옴*/			
+       data=read_file();
+      /*읽어온 Data를 출력Thread로 전송*/
+       workqueue_send(data);
+       workqueue_send(data);
+      }
+      if(result == has_event)
+      {
+       /*수신된 Event가 존재하는경우 MainLoop종료*/
+       output_thread_audio1_stop();
+       output_thread_audio2_stop();
+       break;
+      }
+     }
+    }
+{% endhighlight %}
+
+위 코드에서 핵심은 "workqueue_recv(timeout)"와 "workqueue_send(data)"이다. 
+"workqueue_recv(timeout)"를 통해 수신자 역할을 하고, "workqueue_send(data)"를 통해 요청자 역할을 동시에 사용함으로써
+생성한 출력 Thread와 Communication을 수행하고있음을 볼 수 있다. 
+Event 수신 대기시("workqueue_recv(timeout)")에 Timeout을 지정하지 않음으로써 Block되지 않고 단순 Event발생 여부만 확인하며,
+특별히 처리할 Event가 없는경우 자신의 본 역할, 파일에서 Data를 읽어 "workqueue_send(data)"를 통해 출력 Thread로 Event를 요청하고
+발생한 Event가 있는경우 그 요청에 대한 내용을 수행하는 모습을 볼 수 있다.
+
+<center>Output_Thread_Audio.cpp</center>
+{% highlight c++ %}
+    void thread_start_routine()
+    {
+    /*Metadata 생성*/		
+     open_audio(device);     
+     while(1)		 
+    {
+       int timeout = infinite;
+      /*Event 수신대기(Timeout을 infinite로 설정하였기때문에,
+          MainThread의 Event요청이 있을시까지 무한대기)*/
+      int result = workqueue_recv(timeout);
+      if(result == has_event)
+      {
+        /*Event 수신시 오디오 장치로 Data 쓰기*/			
+        int res = write_audio(data);			
+        /*오디오 장치의 결과를 확인하고 오류 발생시, 종료요청*/
+       if(!res)workqueue_send(close);
+      }						
+     }     
+    }
+{% endhighlight %}
+Main Thread의 코드 흐름과 크게 차이점이 없다.
+여기서도 "workqueue_recv(timeout)", "workqueue_send(data)"를 통해 요청/수신역할을 모두 수행하며,
+단지 Event발생시 자신의 역할인오디오장치로 Data를 내보내며, 내보낸 결과가 오류를 반환하면 Main으로 종료를 요청하게된다.
+
+
+## #4 As I Finished...
+지금까지 #1에서 Thread의 필요성 #2에서 Workqueue 이론 #3에선 #1과 #2를 조합한 구조설계 방향을 알아보았다. 
+
+내가 이 Workqueue라는 기능을 만들어 사용하고 있는 이유는,  개발하면서 항상 생각하게되는 Module 코드 작성, 
+
+Thread 비용감소 측면과 프로그램의 기반을 두기 위함이다.
+
+어떤 Project를 진행할때, 단순 Output만이 아닌 그 프로그램의 명확한 구조설계, 이를 바탕으로한  Framework를 가져가는것이
+
+코드작성의 목적이 확실해지고, 동작 오류를 최소화하며 나아가 완료된 Project의 유지보수에 소요되는 시간을 줄여나갈수있다.
+
+물론 Workqueue라는 것이 Framework라는 큰 범주를 뜻하는 것은 아니다.
+
+다만 살을 덧붙여 Pooling, Observer등 큰 패턴을 그려낼수 있고, 구조설계에 있어 여러 시각으로 바라 볼 수 있게하는 기회를 제공해 주기에
+
+활용성이 충분한 기능이라 생각한다.
+
+#### 자, 그럼 이제 위 내용들을 실제 코드로 적용할수 있는 Library를 보러가자.
+
+[workqueue_api](https://whois-hm.github.io/workqueue-api)

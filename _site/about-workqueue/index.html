@@ -283,6 +283,97 @@ Sleep하는것이 가능하고 Timeout을 설정할수 있기때문에 자신만
 위 내용을 모두 만족한다.
 <img src="../images/com.png" alt="com" /></p>
 
+<h3 id="이제-위의-구조설계를-코드로-표현해보자">이제 위의 구조설계를 코드로 표현해보자</h3>
+<center>Main.cpp</center>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++">    <span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+    <span class="p">{</span>
+      <span class="cm">/*MainThread's Meta data 생성*/</span>		
+     <span class="cm">/*출력할 오디오 파일 Open */</span>		
+     <span class="n">open_file</span><span class="p">();</span>                                            
+     <span class="cm">/*출력 Thread 생성*/</span>		 
+     <span class="n">output_thread_audio1_start</span><span class="p">();</span>
+     <span class="n">output_thread_audio2_start</span><span class="p">();</span>
+		 
+    <span class="cm">/*Main Loop*/</span>
+     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+     <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">timeout</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="cm">/*Event 수신대기(여기서 "timeout"을 0으로 설정하였기 때문에 Event 발생까지
+           Block되지 않고 Event수신 여부만 확인하고 바로 Return)*/</span>
+      <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">workqueue_recv</span><span class="p">(</span><span class="n">timeout</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">timeout_occur</span><span class="p">)</span>
+      <span class="p">{</span>
+       <span class="cm">/*수신된 Event가 없는경우 Data를 얻어옴*/</span>			
+       <span class="n">data</span><span class="o">=</span><span class="n">read_file</span><span class="p">();</span>
+      <span class="cm">/*읽어온 Data를 출력Thread로 전송*/</span>
+       <span class="n">workqueue_send</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+       <span class="n">workqueue_send</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">has_event</span><span class="p">)</span>
+      <span class="p">{</span>
+       <span class="cm">/*수신된 Event가 존재하는경우 MainLoop종료*/</span>
+       <span class="n">output_thread_audio1_stop</span><span class="p">();</span>
+       <span class="n">output_thread_audio2_stop</span><span class="p">();</span>
+       <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+     <span class="p">}</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>위 코드에서 핵심은 “workqueue_recv(timeout)”와 “workqueue_send(data)”이다. 
+“workqueue_recv(timeout)”를 통해 수신자 역할을 하고, “workqueue_send(data)”를 통해 요청자 역할을 동시에 사용함으로써
+생성한 출력 Thread와 Communication을 수행하고있음을 볼 수 있다. 
+Event 수신 대기시(“workqueue_recv(timeout)”)에 Timeout을 지정하지 않음으로써 Block되지 않고 단순 Event발생 여부만 확인하며,
+특별히 처리할 Event가 없는경우 자신의 본 역할, 파일에서 Data를 읽어 “workqueue_send(data)”를 통해 출력 Thread로 Event를 요청하고
+발생한 Event가 있는경우 그 요청에 대한 내용을 수행하는 모습을 볼 수 있다.</p>
+
+<center>Output_Thread_Audio.cpp</center>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++">    <span class="kt">void</span> <span class="nf">thread_start_routine</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="cm">/*Metadata 생성*/</span>		
+     <span class="n">open_audio</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>     
+     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>		 
+    <span class="p">{</span>
+       <span class="kt">int</span> <span class="n">timeout</span> <span class="o">=</span> <span class="n">infinite</span><span class="p">;</span>
+      <span class="cm">/*Event 수신대기(Timeout을 infinite로 설정하였기때문에,
+          MainThread의 Event요청이 있을시까지 무한대기)*/</span>
+      <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">workqueue_recv</span><span class="p">(</span><span class="n">timeout</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">has_event</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="cm">/*Event 수신시 오디오 장치로 Data 쓰기*/</span>			
+        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">write_audio</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>			
+        <span class="cm">/*오디오 장치의 결과를 확인하고 오류 발생시, 종료요청*/</span>
+       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">)</span><span class="n">workqueue_send</span><span class="p">(</span><span class="n">close</span><span class="p">);</span>
+      <span class="p">}</span>						
+     <span class="p">}</span>     
+    <span class="p">}</span></code></pre></figure>
+
+<p>Main Thread의 코드 흐름과 크게 차이점이 없다.
+여기서도 “workqueue_recv(timeout)”, “workqueue_send(data)”를 통해 요청/수신역할을 모두 수행하며,
+단지 Event발생시 자신의 역할인오디오장치로 Data를 내보내며, 내보낸 결과가 오류를 반환하면 Main으로 종료를 요청하게된다.</p>
+
+<h2 id="4-as-i-finished">#4 As I Finished…</h2>
+<p>지금까지 #1에서 Thread의 필요성 #2에서 Workqueue 이론 #3에선 #1과 #2를 조합한 구조설계 방향을 알아보았다.</p>
+
+<p>내가 이 Workqueue라는 기능을 만들어 사용하고 있는 이유는,  개발하면서 항상 생각하게되는 Module 코드 작성,</p>
+
+<p>Thread 비용감소 측면과 프로그램의 기반을 두기 위함이다.</p>
+
+<p>어떤 Project를 진행할때, 단순 Output만이 아닌 그 프로그램의 명확한 구조설계, 이를 바탕으로한  Framework를 가져가는것이</p>
+
+<p>코드작성의 목적이 확실해지고, 동작 오류를 최소화하며 나아가 완료된 Project의 유지보수에 소요되는 시간을 줄여나갈수있다.</p>
+
+<p>물론 Workqueue라는 것이 Framework라는 큰 범주를 뜻하는 것은 아니다.</p>
+
+<p>다만 살을 덧붙여 Pooling, Observer등 큰 패턴을 그려낼수 있고, 구조설계에 있어 여러 시각으로 바라 볼 수 있게하는 기회를 제공해 주기에</p>
+
+<p>활용성이 충분한 기능이라 생각한다.</p>
+
+<h4 id="자-그럼-이제-위-내용들을-실제-코드로-적용할수-있는-library를-보러가자">자, 그럼 이제 위 내용들을 실제 코드로 적용할수 있는 Library를 보러가자.</h4>
+
+<p><a href="https://whois-hm.github.io/workqueue-api">workqueue_api</a></p>
+
             </article>
 
             <!--

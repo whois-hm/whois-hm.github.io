@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/BlogPosting" class="post-wq_api">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Workqueue API</title>
+    <meta name="description" content="Workqueue API Document">
+
+    <!-- Google Authorship Markup -->
+    <link rel="author" href="https://plus.google.com/+?rel=author">
+
+    <!-- Social: Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:title" content="Workqueue API">
+    <meta name="twitter:description" content="Workqueue API Document">
+    
+    <meta property="twitter:image:src" content="http://localhost:4000/assets/img">
+    
+
+    <!-- Social: Facebook / Open Graph -->
+    <meta property="og:url" content="http://localhost:4000/workqueue-api/">
+    <meta property="og:title" content="Workqueue API">
+    
+    <meta property="og:image" content="http://localhost:4000/assets/img">
+    
+    <meta property="og:description" content="Workqueue API Document">
+    <meta property="og:site_name" content="API Document">
+
+    <!-- Social: Google+ / Schema.org  -->
+    <meta itemprop="name" content="Workqueue API"/>
+    <meta itemprop="description" content="Workqueue API Document">
+    <meta itemprop="image" content="http://localhost:4000/assets/img/blog-image.png"/>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.ico" type="image/x-icon" />
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png" />
+    <!-- Windows 8 Tile Icons -->
+    <meta name="application-name" content="hmkwon Blog">
+    <meta name="msapplication-TileColor" content="#0562DC">
+    <meta name="msapplication-square70x70logo" content="smalltile.png" />
+    <meta name="msapplication-square150x150logo" content="mediumtile.png" />
+    <meta name="msapplication-wide310x150logo" content="widetile.png" />
+    <meta name="msapplication-square310x310logo" content="largetile.png" />
+    <!-- Android Lolipop Theme Color -->
+    <meta name="theme-color" content="#B31917">
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/workqueue-api/">
+    <link rel="alternate" type="application/rss+xml" title="API Document" href="http://localhost:4000/feed.xml" />
+</head>
+
+    <body>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" display="none" version="1.1"><defs><symbol id="icon-menu" viewBox="0 0 1024 1024"><path class="path1" d="M128 213.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5zM128 725.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5zM128 469.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5z"/></symbol><symbol id="icon-search" viewBox="0 0 951 1024"><path class="path1" d="M658.286 475.429q0-105.714-75.143-180.857t-180.857-75.143-180.857 75.143-75.143 180.857 75.143 180.857 180.857 75.143 180.857-75.143 75.143-180.857zM950.857 950.857q0 29.714-21.714 51.429t-51.429 21.714q-30.857 0-51.429-21.714l-196-195.429q-102.286 70.857-228 70.857-81.714 0-156.286-31.714t-128.571-85.714-85.714-128.571-31.714-156.286 31.714-156.286 85.714-128.571 128.571-85.714 156.286-31.714 156.286 31.714 128.571 85.714 85.714 128.571 31.714 156.286q0 125.714-70.857 228l196 196q21.143 21.143 21.143 51.429z"/></symbol><symbol id="icon-close" viewBox="0 0 805 1024"><path class="path1" d="M741.714 755.429q0 22.857-16 38.857l-77.714 77.714q-16 16-38.857 16t-38.857-16l-168-168-168 168q-16 16-38.857 16t-38.857-16l-77.714-77.714q-16-16-16-38.857t16-38.857l168-168-168-168q-16-16-16-38.857t16-38.857l77.714-77.714q16-16 38.857-16t38.857 16l168 168 168-168q16-16 38.857-16t38.857 16l77.714 77.714q16 16 16 38.857t-16 38.857l-168 168 168 168q16 16 16 38.857z"/></symbol><symbol id="icon-twitter" viewBox="0 0 951 1024"><path class="path1" d="M925.714 233.143q-38.286 56-92.571 95.429 0.571 8 0.571 24 0 74.286-21.714 148.286t-66 142-105.429 120.286-147.429 83.429-184.571 31.143q-154.857 0-283.429-82.857 20 2.286 44.571 2.286 128.571 0 229.143-78.857-60-1.143-107.429-36.857t-65.143-91.143q18.857 2.857 34.857 2.857 24.571 0 48.571-6.286-64-13.143-106-63.714t-42-117.429v-2.286q38.857 21.714 83.429 23.429-37.714-25.143-60-65.714t-22.286-88q0-50.286 25.143-93.143 69.143 85.143 168.286 136.286t212.286 56.857q-4.571-21.714-4.571-42.286 0-76.571 54-130.571t130.571-54q80 0 134.857 58.286 62.286-12 117.143-44.571-21.143 65.714-81.143 101.714 53.143-5.714 106.286-28.571z"/></symbol><symbol id="icon-facebook" viewBox="0 0 585 1024"><path class="path1" d="M548 6.857v150.857h-89.714q-49.143 0-66.286 20.571t-17.143 61.714v108h167.429l-22.286 169.143h-145.143v433.714h-174.857v-433.714h-145.714v-169.143h145.714v-124.571q0-106.286 59.429-164.857t158.286-58.571q84 0 130.286 6.857z"/></symbol><symbol id="icon-google-plus" viewBox="0 0 951 1024"><path class="path1" d="M420 454.857q0 20.571 18.286 40.286t44.286 38.857 51.714 42 44 59.429 18.286 81.143q0 51.429-27.429 98.857-41.143 69.714-120.571 102.571t-170.286 32.857q-75.429 0-140.857-23.714t-98-78.571q-21.143-34.286-21.143-74.857 0-46.286 25.429-85.714t67.714-65.714q74.857-46.857 230.857-57.143-18.286-24-27.143-42.286t-8.857-41.714q0-20.571 12-48.571-26.286 2.286-38.857 2.286-84.571 0-142.571-55.143t-58-139.714q0-46.857 20.571-90.857t56.571-74.857q44-37.714 104.286-56t124.286-18.286h238.857l-78.857 50.286h-74.857q42.286 36 64 76t21.714 91.429q0 41.143-14 74t-33.714 53.143-39.714 37.143-34 35.143-14 37.714zM336.571 400q21.714 0 44.571-9.429t37.714-24.857q30.286-32.571 30.286-90.857 0-33.143-9.714-71.429t-27.714-74-48.286-59.143-66.857-23.429q-24 0-47.143 11.143t-37.429 30q-26.857 33.714-26.857 91.429 0 26.286 5.714 55.714t18 58.857 29.714 52.857 42.857 38.286 55.143 14.857zM337.714 898.857q33.143 0 63.714-7.429t56.571-22.286 41.714-41.714 15.714-62.286q0-14.286-4-28t-8.286-24-15.429-23.714-16.857-20-22-19.714-20.857-16.571-23.714-17.143-20.857-14.857q-9.143-1.143-27.429-1.143-30.286 0-60 4t-61.429 14.286-55.429 26.286-39.143 42.571-15.429 60.286q0 40 20 70.571t52.286 47.429 68 25.143 72.857 8.286zM800.571 398.286h121.714v61.714h-121.714v125.143h-60v-125.143h-121.143v-61.714h121.143v-124h60v124z"/></symbol></defs></svg>
+
+        <header class="bar-header">
+    <h1 class="logo">
+        <a href="/"></a>
+    </h1>
+</header>
+<div class="search-wrapper">
+    <div class="search-form">
+        <input type="text" class="search-field" placeholder="Search...">
+        <svg class="icon-remove-sign"><use xlink:href="#icon-close"></use></svg>
+        <ul class="search-results search-list"></ul>
+    </div>
+</div>
+
+<div id="fade" class="overlay"></div>
+<a id="slide" class="slideButton fade">
+    <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
+    <svg id="close" class="icon-menu"><use xlink:href="#icon-close"></use></svg>
+</a>
+<aside id="sidebar">
+<nav id="navigation">
+  <h2>MENU</h2>
+ 
+  <ul>
+    
+    	
+	      <li><a href="http://localhost:4000/">Home</a></li>
+	     
+    
+    	
+	      <li><a href="http://localhost:4000/series">Series</a></li>
+	     
+    
+    	
+    
+    	
+	      <li><a href="http://localhost:4000/about">About Me</a></li>
+	     
+    
+    <!--
+    <li><a class="feed" href="http://localhost:4000/feed.xml" title="Atom/RSS feed">Feed</a></li>
+    -->
+  </ul>
+
+</nav>
+</aside>
+<a id="search" class="dosearch">
+    <svg class="icon-menu icon-search"><use xlink:href="#icon-search"></use></svg>
+</a>
+
+<header class="header-post" role="banner">
+     <div class="content">
+        
+            <time itemprop="datePublished" datetime="2020-04-23T00:00:00+09:00" class="date">23 Apr 2020</time>
+        
+        <h1 class="post-title" itemprop="name">Workqueue API</h1>
+        <p itemprop="description" class="subtitle">Workqueue API Document</p>
+    </div>
+</header>
+        <section class="post">
+
+            <article role="article" id="post" class="post-content" itemprop="articleBody">
+                <h2 id="1-intro">#1 Intro</h2>
+<p>“About Workqueue” Post에 적용되는  api와,  기타 Utility api를 제공하는 Library 소개.
+<br /></p>
+
+<h2 id="2-first-thing-to-know">#2 First thing To Know</h2>
+<p>Library는 Os 종속 없이 Windows / Linux 모두  Porting이 가능하도록 개발될 예정이며
+현재는 Linux 기반에서만 Porting이 되어있다.</p>
+
+<h4 id="repository---------------httpsgithubcomwhois-hmworkqueue">Repository               <a href="https://github.com/whois-hm/workqueue">https://github.com/whois-hm/workqueue</a></h4>
+<h4 id="workqueue란------about-workqueue">Workqueue란 ?     <a href="https://whois-hm.github.io/about-workqueue">about workqueue</a></h4>
+
+<h2 id="2description">#2Description</h2>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : Workqueue를 생성한다.
+Param size    : 사용할 Event의 최대 크기(Queue Element Size)
+Param length  : Queue의 갯수
+Return        : 생성 성공시 HANDLE 실패시 NULL
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="k">struct</span> <span class="nc">WQ</span> <span class="o">*</span><span class="nf">WQ_open</span><span class="p">(</span><span class="n">_dword</span> <span class="n">size</span><span class="p">,</span> <span class="n">_dword</span> <span class="n">length</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : 생성한 Workqueue를 종료한다.
+Param pwq     : "WQ_open"에서 반환된 HANDLE Address
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">WQ_close</span><span class="p">(</span><span class="k">struct</span> <span class="nc">WQ</span> <span class="o">**</span><span class="n">pwq</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : Event를 요청한다.
+Param wq      : 요청하고자 하는 "WQ_open"에서 반환된 HANDLE
+Param par     : 보내고자 하는 Event Address
+Param npar    : 보내고자 하는 Event의 크기 (par Size)
+Param time    : Event를 Queue에 넣기 까지 대기하는 시간
+Param flags   : WQ_SEND_FLAGS_BLOCK 지정시 Blocking Mode 지정하지 않을시 Non Block Mode
+Return        : WQ_SIGNALED Event가 Queue에 전달되었음
+                WQEINVAL 잘못된 Parameter
+                WQ_TIMED_OUT 지정된 시간동안 Event를 Queue에 넣지 못하였음
+                WQ_FAIL 예상치 못한 Error가발생했음
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="n">_dword</span> <span class="nf">WQ_send</span><span class="p">(</span><span class="k">struct</span> <span class="nc">WQ</span> <span class="o">*</span><span class="n">wq</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">par</span><span class="p">,</span> <span class="n">_dword</span> <span class="n">npar</span><span class="p">,</span> <span class="n">_dword</span> <span class="n">time</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : Event발생 여부를 확인한다.
+Param wq      : 수신하고자 하는 "WQ_open"에서 반환된 HANDLE
+Param ppar    : "WQ_send"를 통해 보내진 Event를 넘겨받는 Address
+Param pnpar   : "WQ_send"를 통해 보내진 Event의 크기 (ppar Size)
+Param time    : Event발생 여부를 확인하는 Timeout (INFINITE지정시 무한대기)
+Return        : WQ_SIGNALED Event가 발생됨
+                WQEINVAL 잘못된 Parameter
+                WQ_TIMED_OUT 지정된 Timeout시간동안 Event가 발생하지 않음
+                WQ_FAIL 예상치 못한 Error가발생했음
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="n">_dword</span> <span class="nf">WQ_recv</span><span class="p">(</span><span class="k">struct</span> <span class="nc">WQ</span> <span class="o">*</span><span class="n">wq</span><span class="p">,</span> <span class="kt">void</span> <span class="o">**</span><span class="n">ppar</span><span class="p">,</span> <span class="n">_dword</span> <span class="o">*</span><span class="n">pnpar</span><span class="p">,</span> <span class="n">_dword</span> <span class="n">time</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : Thread를 생성한다.
+Param fn      : 생성된 Thread에서 수행될 Function
+Param p       : Parameter fn의 인자로 전달될 Address
+Param pnpar   : "WQ_send"를 통해 보내진 Event의 크기 (ppar Size)
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="k">struct</span> <span class="nc">BackGround</span> <span class="o">*</span><span class="nf">BackGround_turn</span><span class="p">(</span><span class="n">BackGround_function</span> <span class="n">fn</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">p</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : 생성된 Thread의 Routine이 완료될때 까지 대기한후 생성된 Thread를 종료한다.
+Param pb      : "BackGround_turn"에서 반환된 HANDLE Address
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">BackGround_turnoff</span><span class="p">(</span><span class="k">struct</span> <span class="nc">BackGround</span> <span class="o">**</span><span class="n">pb</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : 호출지점 Thread의 ID를 반환한다.
+Return        : 호출한 Thread의 ID
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="n">threadid</span> <span class="nf">BackGround_id</span><span class="p">();</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : Memory를 Hex Edit형태로 Console에 출력한다.
+Param mem     : 출력하고자하는 Memory의 Start Address
+Param size    : 출력하고자하는 Memory의 Size (mem Size)
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">Printf_memory</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">mem</span><span class="p">,</span> <span class="n">_dword</span> <span class="n">size</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : System Boot이후의 경과 시간을 얻어온다.
+Return        : System Boot이후의 경과 시간
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="n">_dword</span> <span class="nf">Time_tickcount</span><span class="p">();</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : 호출자 Thread를 Sleep상태로 병경한다.
+Param time    : Sleep Milliseconds
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">Time_sleep</span><span class="p">(</span><span class="n">_dword</span> <span class="n">time</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : String 또는 Integer값을 연속해서 저장할수 있는 Dictionary를 생성한다.
+Return        : Dictionary생성시 HANDLE 실패시 NULL 
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="k">struct</span> <span class="nc">Dictionary</span> <span class="o">*</span><span class="nf">Dictionary_create</span><span class="p">();</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "Dictionary_create"에서 반환받은 HANDLE을 삭제한다.
+Param pd      : "Dictionary_create"에서 반환받은 HANDLE Address
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">Dictionary_delete</span><span class="p">(</span><span class="k">struct</span> <span class="nc">Dictionary</span> <span class="o">**</span><span class="n">pd</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : String에 대한 Memory를 새로 생성하여 저장한다.
+Param d       : "Dictionary_create"에서 반환받은 HANDLE
+Param k       : 저장한 String을 찾을 Key값
+Param v       : 저장할 String값
+Return        : WQENOMEM Memory생성에 실패하였음
+                WQEINVAL 잘못된 Parameter
+                WQEALREADY 동일한 Key값이 이미 저장되어있음
+                WQ_OK 저장에 성공하였음
+              
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="n">_dword</span> <span class="nf">Dictionary_add_char</span><span class="p">(</span><span class="k">struct</span> <span class="nc">Dictionary</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">v</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : Integer에 대한 값을 저장한다.
+Param d       : "Dictionary_create"에서 반환받은 HANDLE
+Param k       : 저장한 String을 찾을 Key값
+Param v       : 저장할 Integer값
+Return        : WQENOMEM Memory생성에 실패하였음
+                WQEINVAL 잘못된 Parameter
+                WQEALREADY 동일한 Key값이 이미 저장되어있음
+                WQ_OK 저장에 성공하였음
+              
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="n">_dword</span> <span class="nf">Dictionary_add_int</span><span class="p">(</span><span class="k">struct</span> <span class="nc">Dictionary</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : 저장된 Key를 삭제한다.
+Param d       : "Dictionary_create"에서 반환받은 HANDLE
+Param k       : 삭제할 Key값
+Return        : None              
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">Dictionary_remove</span><span class="p">(</span><span class="k">struct</span> <span class="nc">Dictionary</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">k</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : 저장된 String을 참조하여 얻어온다.
+Param d       : "Dictionary_create"에서 반환받은 HANDLE
+Param k       : 찾을 Key값
+Return        : Key에 대한 String을 찾으면 해당 String의 참조 Address 없으면 NULL              
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">Dictionary_refchar</span><span class="p">(</span><span class="k">struct</span> <span class="nc">Dictionary</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">k</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : 저장된 String을 새로운 Memory를 생성하여 복사해온다.
+Param d       : "Dictionary_create"에서 반환받은 HANDLE
+Param k       : 찾을 Key값
+Return        : Key에 대한 String을 찾으면 새로 생성해 복사된 Address 없으면 NULL              
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">Dictionary_allocchar</span><span class="p">(</span><span class="k">struct</span> <span class="nc">Dictionary</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">k</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "Dictionary_allocchar"에서 반환받은 Address를 삭제한다.
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">Dictionary_freechar</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="n">allocchar</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : 저장된 Integer값을 얻어온다.
+Param d       : "Dictionary_create"에서 반환받은 HANDLE
+Param k       : 찾을 Key값
+Return        : Key에 대한 Interger를 찾으면 해당 값 없으면 0
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">int</span> <span class="nf">Dictionary_copyint</span><span class="p">(</span><span class="k">struct</span> <span class="nc">Dictionary</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">k</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : Dictionary에 해당 Key의 존재 유무를 검사한다.
+Param d       : "Dictionary_create"에서 반환받은 HANDLE
+Param k       : 찾을 Key값
+Return        : Key가 존재하면 1 없으면 -1
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">int</span> <span class="nf">Dictionary_haskey</span><span class="p">(</span><span class="k">struct</span> <span class="nc">Dictionary</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">k</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : CriticalSection 객체를 생성한다.
+Param cs      : 객체를 얻어올 Address
+Return        : 객체를 얻어오면 0 / 잘못된 Parameter이면 WQEINVAL / Error가 발생 하면 0보다 작은 음수
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">int</span> <span class="nf">CS_open</span><span class="p">(</span><span class="n">criticalsection</span> <span class="o">*</span><span class="n">cs</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : CriticalSection 구역에 Lock을 건다
+Param cs      : "CS_open"에서 얻어온 객체 Address
+Param time    : Lock을 얻어올때 까지 대기하는 Milliseconds 시간 (INFINITE지정시 무한 대기)
+Return        : WQ_SIGNALED CriticalSection구역에 Lock을 걸고 진입하는데 성공함
+                WQEINVAL 잘못된 Parameter
+                WQ_TIMED_OUT 지정된 Timeout시간동안 Lock을 얻는데 실패하였음
+                WQ_FAIL 예상치 못한 Error가발생했음
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="n">_dword</span> <span class="nf">CS_lock</span><span class="p">(</span><span class="n">criticalsection</span> <span class="o">*</span><span class="n">cs</span><span class="p">,</span> <span class="n">_dword</span> <span class="n">time</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "CS_lock"이 걸어둔 Lock을 해지한다.
+Param cs      : "CS_open"에서 얻어온 객체 Address
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">CS_unlock</span><span class="p">(</span><span class="n">criticalsection</span> <span class="o">*</span><span class="n">cs</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "CS_open"에서 얻어온 객체를 삭제한다.
+Param cs      : "CS_open"에서 얻어온 객체 Address
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">CS_close</span><span class="p">(</span><span class="n">criticalsection</span> <span class="o">*</span><span class="n">cs</span><span class="p">);</span>
+ <span class="o">-------------------------------------------------------------------------------------------</span>
+ 
+ <span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : Semaphore 객체를 생성한다.
+Param sem     : 객체를 얻어올 Address
+Param i       : 생성초기 Semaphore값
+Param m       : 최대 Semaphore값
+Return        : 객체를 얻어오면 0 / Error가 발생 하면 0보다 작은 음수
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">int</span> <span class="nf">SEMA_open</span><span class="p">(</span><span class="n">semaphore</span> <span class="o">*</span><span class="n">sem</span><span class="p">,</span> <span class="n">_dword</span> <span class="n">i</span><span class="p">,</span> <span class="n">_dword</span> <span class="n">m</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : Semaphore 하나를 가져온다.
+Param sem     : "SEMA_open"에서 가져온 객체 Address
+Param time    : Semaphore를 얻어올때 까지 대기하는 Milliseconds 시간 (INFINITE지정시 무한 대기)
+Return        : WQ_SIGNALED Semaphore 하나를 가져오는데 성공함
+                WQEINVAL 잘못된 Parameter
+                WQ_TIMED_OUT 지정된 Timeout시간동안 Lock을 얻는데 실패하였음
+                WQ_FAIL 예상치 못한 Error가발생했음
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="n">_dword</span> <span class="nf">SEMA_lock</span><span class="p">(</span><span class="n">semaphore</span> <span class="o">*</span><span class="n">sem</span><span class="p">,</span> <span class="n">_dword</span> <span class="n">time</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+ <span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "SEMA_lock"에서 가져온 Semaphore를 돌려준다.
+Param sem     : "SEMA_open"에서 가져온 객체 Address
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">SEMA_unlock</span><span class="p">(</span><span class="n">semaphore</span> <span class="o">*</span><span class="n">sem</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+ <span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "SEMA_open"에서 가져온 객체를 삭제한다.
+Param sem     : "SEMA_open"에서 가져온 객체 Address
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">SEMA_close</span><span class="p">(</span><span class="n">semaphore</span> <span class="o">*</span><span class="n">sem</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "libwq_malloc"사용을 위해 내부 값을 생성해낸다.
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">libwq_heap_testinit</span><span class="p">();</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "libwq_heap_testinit"에서 생성된 값을 삭제한다.
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="nf">libwq_heap_testdeinit</span><span class="p">();</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "malloc"을 대체 하여 Memory protect기능과 Meta data를 갖는 Heap Memory를 얻어온다.
+Param Size    : 요청하는 Heap Memory의 크기
+Return        : 성공시 Heap Memory의 Start Address 실패시 NULL
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="n">WQ_API</span> <span class="kt">void</span> <span class="o">*</span><span class="nf">libwq_malloc</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "Free"를 대체하여 "libwq_malloc"에서 얻어온 Heap Memory를 반환한다. 
+Param mem     : "libwq_malloc"에서 반환받은 Memory
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="kt">void</span> <span class="nf">libwq_free</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">mem</span><span class="p">);</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="cm">/*
+Des           : "libwq_malloc"에서 반환받은 Memory들의 Meta data를 Console로 출력한다.
+Return        : None
+*/</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+<span class="kt">void</span> <span class="nf">libwq_print_heap</span><span class="p">();</span>
+<span class="o">-------------------------------------------------------------------------------------------</span>
+</code></pre></div></div>
+
+<h2 id="4-as-i-finished">#4 As I Finished…</h2>
+<p>내가 이 Library를 별도로 운영하는건 OpenSource처럼 무언가 큰 의미를 갖는것은 아니다.</p>
+
+<p>개발함에 있어서 자주 사용되는 기능들을 모아 두어 매번 재활용 가능하게 만들어 두기 위함이며</p>
+
+<p>동일한 기능을 갖되  Os 마다 제공되는 API들을 하나의 Interface로 활용하기 위함이며</p>
+
+<p>디버깅에 있어 더 빠른, 더 확실함을 증명하기 위함이며</p>
+
+<p>개인적으로 Os Platform을 학습하기 위함이며</p>
+
+<p>Library를 작성해보면서 ‘사용자’와 ‘제공자’측면에서의 Interface 를 학습하기 위함이다.</p>
+
+<p>때문에 필요하다면 조금씩 기능을 확장하고 코드 커스터마이징을 해나갈것이다.</p>
+
+            </article>
+
+            <!--
+<section class="share">
+    <h3>Share</h3>
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:4000/workqueue-api/%20via%20&#64;&hashtags="
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
+        <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
+    </a>
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/workqueue-api/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
+        <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
+    </a>
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:4000/workqueue-api/"
+    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
+        <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
+    </a>
+</section>
+-->
+            <!--
+<section class="author" itemprop="author">
+    <div class="details" itemscope itemtype="http://schema.org/Person">
+        <img itemprop="image" class="img-rounded" src="/assets/img/blog-author.jpg" alt="">
+        <p class="def">Author</p>
+        <h3 class="name">
+            <a itemprop="name" href="https://plus.google.com/+/posts">hmkwon</a>
+        </h3>
+        <p class="desc">^_^</p>
+        <p><a itemprop="email" class="email" href="mailto:khm767@gmail.com">khm767@gmail.com</a></p>
+        <p><a itemprop="github" class="github" href="https://github.com/">github.com/</a></p>
+    </div>
+</section>
+-->
+
+             
+                <!--
+<section class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+</section>
+<script type="text/javascript">
+    var disqus_loaded = false;
+
+    function load_disqus()
+    {
+        disqus_loaded = true;
+        var disqus_shortname = '';
+        var disqus_title = '';
+        var disqus_url = '/workqueue-api/';
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        var ldr = document.getElementById('disqus_loader');
+    };
+    window.onscroll = function(e) {
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 800)) {
+            //hit bottom of page
+            if (disqus_loaded==false)
+                load_disqus()
+        }
+    };
+</script>
+-->
+
+            
+            <footer>
+    <p></a></p>
+</footer>
+<script src="/assets/js/main.js"></script>
+        </section>
+    </body>
+</html>
