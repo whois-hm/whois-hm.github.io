@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/BlogPosting" class="post-Heap">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Heap Manage</title>
+    <meta name="description" content="Managing to Heap Memory">
+
+    <!-- Google Authorship Markup -->
+    <link rel="author" href="https://plus.google.com/+?rel=author">
+
+    <!-- Social: Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:title" content="Heap Manage">
+    <meta name="twitter:description" content="Managing to Heap Memory">
+    
+    <meta property="twitter:image:src" content="http://localhost:4000/assets/img">
+    
+
+    <!-- Social: Facebook / Open Graph -->
+    <meta property="og:url" content="http://localhost:4000/heap-manage/">
+    <meta property="og:title" content="Heap Manage">
+    
+    <meta property="og:image" content="http://localhost:4000/assets/img">
+    
+    <meta property="og:description" content="Managing to Heap Memory">
+    <meta property="og:site_name" content="API Document">
+
+    <!-- Social: Google+ / Schema.org  -->
+    <meta itemprop="name" content="Heap Manage"/>
+    <meta itemprop="description" content="Managing to Heap Memory">
+    <meta itemprop="image" content="http://localhost:4000/assets/img/blog-image.png"/>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.ico" type="image/x-icon" />
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png" />
+    <!-- Windows 8 Tile Icons -->
+    <meta name="application-name" content="hmkwon Blog">
+    <meta name="msapplication-TileColor" content="#0562DC">
+    <meta name="msapplication-square70x70logo" content="smalltile.png" />
+    <meta name="msapplication-square150x150logo" content="mediumtile.png" />
+    <meta name="msapplication-wide310x150logo" content="widetile.png" />
+    <meta name="msapplication-square310x310logo" content="largetile.png" />
+    <!-- Android Lolipop Theme Color -->
+    <meta name="theme-color" content="#B31917">
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/heap-manage/">
+    <link rel="alternate" type="application/rss+xml" title="API Document" href="http://localhost:4000/feed.xml" />
+</head>
+
+    <body>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" display="none" version="1.1"><defs><symbol id="icon-menu" viewBox="0 0 1024 1024"><path class="path1" d="M128 213.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5zM128 725.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5zM128 469.333h768q17.667 0 30.167 12.5t12.5 30.167-12.5 30.167-30.167 12.5h-768q-17.667 0-30.167-12.5t-12.5-30.167 12.5-30.167 30.167-12.5z"/></symbol><symbol id="icon-search" viewBox="0 0 951 1024"><path class="path1" d="M658.286 475.429q0-105.714-75.143-180.857t-180.857-75.143-180.857 75.143-75.143 180.857 75.143 180.857 180.857 75.143 180.857-75.143 75.143-180.857zM950.857 950.857q0 29.714-21.714 51.429t-51.429 21.714q-30.857 0-51.429-21.714l-196-195.429q-102.286 70.857-228 70.857-81.714 0-156.286-31.714t-128.571-85.714-85.714-128.571-31.714-156.286 31.714-156.286 85.714-128.571 128.571-85.714 156.286-31.714 156.286 31.714 128.571 85.714 85.714 128.571 31.714 156.286q0 125.714-70.857 228l196 196q21.143 21.143 21.143 51.429z"/></symbol><symbol id="icon-close" viewBox="0 0 805 1024"><path class="path1" d="M741.714 755.429q0 22.857-16 38.857l-77.714 77.714q-16 16-38.857 16t-38.857-16l-168-168-168 168q-16 16-38.857 16t-38.857-16l-77.714-77.714q-16-16-16-38.857t16-38.857l168-168-168-168q-16-16-16-38.857t16-38.857l77.714-77.714q16-16 38.857-16t38.857 16l168 168 168-168q16-16 38.857-16t38.857 16l77.714 77.714q16 16 16 38.857t-16 38.857l-168 168 168 168q16 16 16 38.857z"/></symbol><symbol id="icon-twitter" viewBox="0 0 951 1024"><path class="path1" d="M925.714 233.143q-38.286 56-92.571 95.429 0.571 8 0.571 24 0 74.286-21.714 148.286t-66 142-105.429 120.286-147.429 83.429-184.571 31.143q-154.857 0-283.429-82.857 20 2.286 44.571 2.286 128.571 0 229.143-78.857-60-1.143-107.429-36.857t-65.143-91.143q18.857 2.857 34.857 2.857 24.571 0 48.571-6.286-64-13.143-106-63.714t-42-117.429v-2.286q38.857 21.714 83.429 23.429-37.714-25.143-60-65.714t-22.286-88q0-50.286 25.143-93.143 69.143 85.143 168.286 136.286t212.286 56.857q-4.571-21.714-4.571-42.286 0-76.571 54-130.571t130.571-54q80 0 134.857 58.286 62.286-12 117.143-44.571-21.143 65.714-81.143 101.714 53.143-5.714 106.286-28.571z"/></symbol><symbol id="icon-facebook" viewBox="0 0 585 1024"><path class="path1" d="M548 6.857v150.857h-89.714q-49.143 0-66.286 20.571t-17.143 61.714v108h167.429l-22.286 169.143h-145.143v433.714h-174.857v-433.714h-145.714v-169.143h145.714v-124.571q0-106.286 59.429-164.857t158.286-58.571q84 0 130.286 6.857z"/></symbol><symbol id="icon-google-plus" viewBox="0 0 951 1024"><path class="path1" d="M420 454.857q0 20.571 18.286 40.286t44.286 38.857 51.714 42 44 59.429 18.286 81.143q0 51.429-27.429 98.857-41.143 69.714-120.571 102.571t-170.286 32.857q-75.429 0-140.857-23.714t-98-78.571q-21.143-34.286-21.143-74.857 0-46.286 25.429-85.714t67.714-65.714q74.857-46.857 230.857-57.143-18.286-24-27.143-42.286t-8.857-41.714q0-20.571 12-48.571-26.286 2.286-38.857 2.286-84.571 0-142.571-55.143t-58-139.714q0-46.857 20.571-90.857t56.571-74.857q44-37.714 104.286-56t124.286-18.286h238.857l-78.857 50.286h-74.857q42.286 36 64 76t21.714 91.429q0 41.143-14 74t-33.714 53.143-39.714 37.143-34 35.143-14 37.714zM336.571 400q21.714 0 44.571-9.429t37.714-24.857q30.286-32.571 30.286-90.857 0-33.143-9.714-71.429t-27.714-74-48.286-59.143-66.857-23.429q-24 0-47.143 11.143t-37.429 30q-26.857 33.714-26.857 91.429 0 26.286 5.714 55.714t18 58.857 29.714 52.857 42.857 38.286 55.143 14.857zM337.714 898.857q33.143 0 63.714-7.429t56.571-22.286 41.714-41.714 15.714-62.286q0-14.286-4-28t-8.286-24-15.429-23.714-16.857-20-22-19.714-20.857-16.571-23.714-17.143-20.857-14.857q-9.143-1.143-27.429-1.143-30.286 0-60 4t-61.429 14.286-55.429 26.286-39.143 42.571-15.429 60.286q0 40 20 70.571t52.286 47.429 68 25.143 72.857 8.286zM800.571 398.286h121.714v61.714h-121.714v125.143h-60v-125.143h-121.143v-61.714h121.143v-124h60v124z"/></symbol></defs></svg>
+
+        <header class="bar-header">
+    <h1 class="logo">
+        <a href="/"></a>
+    </h1>
+</header>
+<div class="search-wrapper">
+    <div class="search-form">
+        <input type="text" class="search-field" placeholder="Search...">
+        <svg class="icon-remove-sign"><use xlink:href="#icon-close"></use></svg>
+        <ul class="search-results search-list"></ul>
+    </div>
+</div>
+
+<div id="fade" class="overlay"></div>
+<a id="slide" class="slideButton fade">
+    <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
+    <svg id="close" class="icon-menu"><use xlink:href="#icon-close"></use></svg>
+</a>
+<aside id="sidebar">
+<nav id="navigation">
+  <h2>MENU</h2>
+ 
+  <ul>
+    
+    	
+	      <li><a href="http://localhost:4000/">Home</a></li>
+	     
+    
+    	
+	      <li><a href="http://localhost:4000/series">Series</a></li>
+	     
+    
+    	
+    
+    	
+	      <li><a href="http://localhost:4000/about">About Me</a></li>
+	     
+    
+    <!--
+    <li><a class="feed" href="http://localhost:4000/feed.xml" title="Atom/RSS feed">Feed</a></li>
+    -->
+  </ul>
+
+</nav>
+</aside>
+<a id="search" class="dosearch">
+    <svg class="icon-menu icon-search"><use xlink:href="#icon-search"></use></svg>
+</a>
+
+<header class="header-post" role="banner">
+     <div class="content">
+        
+            <time itemprop="datePublished" datetime="2020-04-24T00:00:00+09:00" class="date">24 Apr 2020</time>
+        
+        <h1 class="post-title" itemprop="name">Heap Manage</h1>
+        <p itemprop="description" class="subtitle">Managing to Heap Memory</p>
+    </div>
+</header>
+        <section class="post">
+
+            <article role="article" id="post" class="post-content" itemprop="articleBody">
+                <h2 id="1-intro">#1 Intro</h2>
+<p>우리가 만든 프로그램은 구동시 또는 RunTime에  Os에 의한 자원할당,
+필요한 자원을 요청하면서 작업을 수행한다.</p>
+
+<p>이번 Post에선 이러한  Os에서 제공되는 Memory영역의 OS / Stack / Data / Heap중
+“Heap 영역”에 관한 내용을 정리하면서,  사용에 있어 발생할 수 있는 Exception 과 
+해결하는 방안도 함께 알아보고자 한다.</p>
+
+<table width="300" height="100">
+	<tr align="center">
+		<td>Os</td>
+	</tr>
+<tr align="center">
+		<td>Data</td>
+	</tr>
+	<tr align="center">
+		<td>Stack</td>
+	</tr>
+	<tr align="center" bgcolor="#41AF39">
+		<td>Heap</td>
+	</tr>
+</table>
+
+<h2 id="2-heap">#2 Heap</h2>
+
+<p>Heap Memory는 필요에 의해 “동적할당”이 이뤄지는 영역이다.</p>
+
+<p>다시말해 Runtime시 특정자료를 보관하기 위한 “사용자 Memory”이며,
+Os는 각 Process마다 특정 크기의 Heap Memory를 Virtual Memory형태로 제공하기 때문에
+우리는 필요에 따라 원하는 크기만큼의 Memory Block을 Heap에서 가져와 사용하는것이다.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cm">/*Memory Block을 요청하기*/</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">memory_block</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Virtual Memory<br />
+Memory라함은 무한한 크기를 갖는 공간이 아닌,  물리적 System에 종속되는 한정된 크기를 갖는 공간이다. 
+그럼 어떻게 우리는 저 한정된 크기의 Memory를 여러 Process에서 보다 더 많은 자원으로 사용이 가능해질까, 
+Os에서는 이에 대한 운영방법으로 물리Memory와 가상Memory를 분리하고, 이 가상Memory를 Process에게 할당해주며
+여기서 사용되는 가상Memory를 물리Memory와 적절히 Mapping한다</p>
+</blockquote>
+
+<blockquote>
+  <p>Stack? Heap?<br />
+위에서 말한대로 Process는 Os에게서 할당받은 영역이 Heap도 존재하지만 다른성격의 Stack영역도 함께 제공받는다.
+이 둘의 가장 큰 차이점은 Stack은 Os가 관리하는 영역이고 Heap은 사용자가 관리하는 영역이라는 점이다. 
+우리가 생성해내는 local변수, Function Return Address, Function인자등은 사용자가 직접 할당과 해지를 관리하지 않는 
+	&gt;Last In First Out구조의 영역이고 Heap은 우리가 필요한경우 할당과 이에 따른 해지를 직접 관리해야 하는 영역이다.</p>
+</blockquote>
+
+<h2 id="3exception">#3Exception</h2>
+
+<h4 id="사용과-반환">사용과 반환</h4>
+
+<p>Heap Memory는 “사용자 Memory”라고 했다. 
+이 의미는 Os가 관리 권한을 사용자에게 제공하는것으로도 볼 수 있기 때문에, 사용하는 대에는 일정 규칙이 존재하며
+이 규칙을 지켜야 안정적인 프로그램을 운영할 수 있다.</p>
+
+<p>여기서 규칙은 복잡하고 어려운 것이 아니라, 사용과 반환을 명확히 하라는 것이다. 
+Heap에서 Block을 요구만 한다면 아무리 Virtual Memory라 해도 이 크기는 제한적일 수 밖에 없기 때문에 
+사용을 완료한 Block은 반환하여, 다음번 재활용이 가능하게 만들어 줘야 한다.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cm">/*Memory Block을 요청하기*/</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">memory_block</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+  <span class="cm">/*생성된 Block사용*/</span>
+  <span class="n">block_use</span><span class="p">(</span><span class="n">memory_block</span><span class="p">);</span>
+  <span class="cm">/*사용이 완료된 Block 반환*/</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">memory_block</span><span class="p">);</span>
+  <span class="n">memory_block</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>이를 지키지 않거나 혹은 실수로 반환하는 과정을 누락했다면, Process에 Memory Leak이 발생하고 Os는 
+Process에 더이상 사용가능한 Memory가 없음을 “Out of Memory”로 출력하고 다운시킨다.</p>
+
+<h4 id="잘못된-사용">잘못된 사용</h4>
+<p>(이 내용은 Heap과 마찬가지로 Stack에서도 발생할수 있는 Exception 이다.)
+c/c++은주소 접근에 자유롭기에 다룰수 있는 기능들이 많지만 이에 따른 위험요소 또한 많아지고,<br />
+신경써야 할 부분이 많은것은 사실이다.</p>
+
+<p>Heap이라는 Memory또한 Pointer라는 접근자로 Address를 참조하게 되는데,
+이런 참조과정에서 무효한 Address를 참조하거나 범위를 초과하는 Address를 참조하는등
+Exception을 발생시키는 요인들이 많이 존재한다.
+<br /></p>
+<center>첫번째무효한 Address 접근의 예</center>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cm">/*Memory Block을 요청을위한 변수 생성*/</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">memory_block</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="cm">/*NULL Pointer Exception*/</span>
+  <span class="n">block_use</span><span class="p">(</span><span class="n">memory_block</span><span class="p">);</span>
+</code></pre></div></div>
+
+<center>두번째 무효한 Address 접근의 예</center>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cm">/*Memory Block을 요청하기*/</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">memory_block</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+  <span class="cm">/*생성된 Block사용*/</span>
+  <span class="n">block_use</span><span class="p">(</span><span class="n">memory_block</span><span class="p">);</span>
+  <span class="cm">/*사용이 완료된 Block 반환*/</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">memory_block</span><span class="p">);</span>
+  <span class="cm">/*반환한 변수를 초기화 하지 않음*/</span>
+  <span class="c1">//memory_block = NULL;</span>
+  <span class="cm">/*변수 재활용*/</span>
+  <span class="cm">/*invalid Address Exception*/</span>
+  <span class="n">block_use</span><span class="p">(</span><span class="n">memory_block</span><span class="p">);</span>
+</code></pre></div></div>
+
+<center>범위를 초과하는 Address 접근의 예</center>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cm">/*Memory Block을 요청을위한 변수 생성*/</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">memory_block</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="cm">/*생성 사이즈는 5이지만 크기를 넘어선 Loop*/</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="cm">/*i &gt;= 5 Invalid Address Exception*/</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">memory_block</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+  <span class="p">}</span>  
+</code></pre></div></div>
+<p>이런 Exception들은 참조되는 순간 바로 Process를 다운시킴으로, 
+항상 참조 접근에 대한 유효성 검사를 올바르게 진행해야한다.</p>
+
+<h3 id="3-solutions">#3 Solutions</h3>
+<p>#2에 제시된 Exception들은 단순하기 때문에 문제 발생지점을 찾는데 많은 시간이 들지 않는다. 
+하지만 규모가 커지고 참조하는 Point가 많아질수록 이를 해결하는데에 굉장히 많은 
+시간을 소요하게 할 수 있고,  System에 따라 Process가 바로 다운되지 않는 경우도 
+존재하기 때문에, 잠재적인 문제점을 가지고 있는 Process가 될 수 도있다.</p>
+
+<h4 id="그럼-어떻게-해야-할까">그럼 어떻게 해야 할까?<br /></h4>
+
+<p>보통 다운되는 흐름이 눈에 보이는경우는, 특별한 도구 없이 수정하기도하지만,
+GDB, OpenSource등을 활용해 해결하는 경우도 다반사이다. 하지만 이는  Complier가 지원되지 않는경우가 있을수 있고, OpenSource를 사용하는것도 때론 
+Poring하는데에 더많은 시간을 소비할수도있다.</p>
+
+<p>때문에 여기서 알아보는 해결방안은 “코드내에 Exception발생을 추적할 수 있는 기능”을 추가하는 것이다.</p>
+
+<p>“기능을 추가한다”라는 것이 조금 부담스러울 수 있다. <br />
+하지만 Hooking기법 또는 동일한 Interface에 서로 다른 Plug_in을 적용해 이를 외부에서 명시적으로 사용한다면,<br />
+“코드내에 Exception발생을 추적할 수 있는 기능”Mode, <br />
+“일반”Mode<br />
+로의 Switching이 원활해지기 때문에,  개발 당시에는 “코드내에 Exception발생을 추적할 수 있는 기능”Mode로개발하고 
+프로그램을 Release하는 시점에는  “일반”Mode로 배포함으로써
+“완성도 높은 프로그램”을 이뤄낼 수 있다.</p>
+
+<center>Plug_In ?</center>
+<p>Plug_In이란 것은 단지 하나의 Interface에서 여러 도구를 필요에 맞게 끼워 맞추는것이라 보면된다. 
+C++ 로 예를 들면 부모 객체의 Virtual Function을 자식 객체에서 재정의 하는 것과 같은데,
+C를 기반한다면 객체가 없기때문에 Function Pointer로 Plug_In을 유도하거나 
+아래와 같이 define문으로 Plug_In을 유도할 수 있다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*정의부*/</span>
+<span class="cp">#if defined Exception Trace
+</span>  <span class="cp">#define our_malloc(size)  Trace_malloc(size)
+</span>  <span class="cp">#define our_free(p)       Trace_free(p)
+#else 
+</span>  <span class="cp">#define our_malloc(size) malloc(size)
+</span>  <span class="cp">#define our_free(p)      free(p)
+#endif
+</span>	
+  <span class="cm">/*사용부*/</span>
+  <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+  <span class="p">{</span>
+     <span class="kt">void</span> <span class="o">*</span><span class="n">mem</span> <span class="o">=</span> <span class="n">our_malloc</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+     <span class="n">our_free</span><span class="p">(</span><span class="n">mem</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+<center>Hooking ?</center>
+<p>이 기법의 정의는 함수호출, 메시지, 이벤트등을 중간에서 바꾸거나 가로채는 방법을 의미한다.</p>
+<center> 요청 -&gt; Os</center>
+<center> 요청 -&gt; 중간자 -&gt; Os</center>
+<p><br />
+C++은 new와 delete연산자 대한 오버로딩이 가능하기 때문에 직접적인 Hooking을 사용할 수 있다.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">inline</span> <span class="kt">void</span> <span class="o">*</span><span class="n">operator</span> <span class="nf">new</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">block</span> <span class="o">=</span> <span class="n">Trace_malloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">block</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">inline</span> <span class="kt">void</span> <span class="n">operator</span> <span class="nf">delete</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">mem</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Trace_free</span><span class="p">(</span><span class="n">mem</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>자, 그럼 지금까지 “코드내에 Exception발생을 추적할 수 있는 기능”을 추가하는 것에서 
+외부에서 사용할 Interface부분을 보았다.</p>
+
+<h4 id="이제-실제-추적-기능을-살펴보자"><center>이제 실제 "추적 기능"을 살펴보자.</center></h4>
+<p>추적기능은 말 그대로 추적할수 있는 정보, Meta data를 보관하고 있으면 되고, 이 정보들은 적절한 시점 “외부에 제공된 Interface”가 호출된 지점
+에서 오류가 발생하면 Console출력 또는 Console출력이후 Process 강제 다운을 통해 제공하면된다.</p>
+
+<p>Meta data를 보관하는 방법은 사용자가 Memory Block을 요청할때 요청한 크기보다 Meta data를 담을 수 있도록 좀 더 큰  사이즈로 변경해서
+Block을 할당하고 할당된 Memory내에  Meta data를 삽입한후 사용자에겐 Metadata 다음의 주소를 Start Address로 Return 해준다.</p>
+
+<p>여기서 이 추적기능을 통해 무엇을 알고싶을까</p>
+<ol>
+  <li>현재 사용률을 알고싶다.</li>
+  <li>잘못된 참조위치를 확인하고 싶다.</li>
+  <li>Memory Block이 어디서 생성된것인지 알고싶다.</li>
+</ol>
+
+<p>위 3가지 정보들을 알기위해선 다음과 같은 Meta정보가 필요함을 알수있다.</p>
+<center>현재 사용률을 알고싶다.</center>
+<p>현재 사용률을 표시하려면 지금까지 요구된 Block이 몇개인지 Block의 크기는 얼마인지알아야 하며,
+Block들의 위치를 직접적으로 참조할 수 있어야하기 때문에 List라는 자료구조가 필요하다.</p>
+
+<center>잘못된 참조위치를 확인하고 싶다.</center>
+<p>NULL Pointer Exception 또는 유효하지 않은 Pointer, Double Free등의 잘못된 참조를 
+알기위해선 현재까지 사용된 Block을 순회하며, 일치하는 Address를 찾아야하기 때문에 
+List 자료구조가 필요하며, 요청한 사이즈만큼만을 사용하였는지 확인하기위해 Checksum정보가 필요하다.</p>
+
+<center>Memory Block이 어디서 생성된것인지 알고싶다. </center>
+<p>Memory Block을 요청할 당시의 호출 Stack이 필요하므로   backtrace정보를 담아야한다.</p>
+
+<p>정리하면 List Link ,  Block사이즈, Checksum, Bactrace를 Meta정보로 사용해야한다. 
+<br />
+그럼 이제 Memory Block을 디자인 해보자.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>16 Address + User Block Size</td>
+      <td>Tail Checksum</td>
+      <td>4Byte</td>
+      <td>사용자가 요청한 Block사이즈를 넘어서 참조했는지 확인 하기위한 Checksum  변수</td>
+    </tr>
+    <tr>
+      <td>16 Address</td>
+      <td>User Block</td>
+      <td>가변Byte</td>
+      <td>사용자에게 Return해줄 StartAddress</td>
+    </tr>
+    <tr>
+      <td>12 Address</td>
+      <td>Head Checksum</td>
+      <td>4Byte</td>
+      <td>사용자가 StartAddress 이전의 주소를 참조했는지 확인 하기 위한 Checksum변수</td>
+    </tr>
+    <tr>
+      <td>8 Address</td>
+      <td>User Block Size</td>
+      <td>4Byte</td>
+      <td>User Block의 사이즈</td>
+    </tr>
+    <tr>
+      <td>4 Address</td>
+      <td>BackTrace</td>
+      <td>4Byte</td>
+      <td>호출 스택을 저장하기위한 변수</td>
+    </tr>
+    <tr>
+      <td>0 Address</td>
+      <td>List Link</td>
+      <td>4Byte</td>
+      <td>Block의 Link정보를 담는 변수</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>편의상 0번지 주소를 Block의 Start Address로하여 Metadata(20Byte)와 사용자가 요청한 크기의 만큼의 Block(가변Byte)을 생성했다.
+우리는 위 Block을 내부의 List Link정보로 전체를 운영할것이고, 사용자에게는 항상 Block의 16번지Address를 반환해주면서
+Metadata를 기반하여 Exception발생 지점에서 어떠한 이유로 발생할것인지, 현재 Memory의 사용률을 얼마나 되는지에 대한 정보를 Os가 Process를 다운시키기전에 
+미리 확인할 수 있다.</p>
+
+<p>위 내용을 Code로 표현하면 다음과 같다.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*사용자가 Block을 요청하는 경우*/</span>
+<span class="cm">/*malloc Interface함수명이 'Trace_malloc'이라 가정*/</span>
+<span class="kt">void</span> <span class="o">*</span><span class="nf">Trace_malloc</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="n">MetaDataSize</span> <span class="o">=</span> <span class="n">ListLinkSize</span> <span class="o">+</span> <span class="n">BackTraceSize</span> <span class="o">+</span> <span class="n">UserBlockSize</span> <span class="o">+</span> <span class="n">HeadChksum</span> <span class="o">+</span> <span class="n">TailChksum</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">TraceBlock</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">MetaDataSize</span><span class="p">);</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">TraceBlock</span> <span class="o">+</span> <span class="n">ListLinkStartAddress</span><span class="p">)</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">TraceBlock</span> <span class="o">+</span> <span class="n">BackTraceStartAddress</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">TraceBlock</span> <span class="o">+</span> <span class="n">UserBlockStartAddress</span><span class="p">)</span> <span class="o">=</span> <span class="n">C</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">TraceBlock</span> <span class="o">+</span> <span class="n">HeadChksumStartAddress</span><span class="p">)</span> <span class="o">=</span> <span class="n">D</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">TraceBlock</span> <span class="o">+</span> <span class="n">TailchksumStartAddress</span><span class="p">)</span> <span class="o">=</span> <span class="n">E</span><span class="p">;</span>
+    <span class="n">LinkThisBlock</span><span class="p">(</span><span class="n">TraceBlock</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">TraceBlock</span> <span class="o">+</span> <span class="n">UserBlockStartAddress</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*사용자가 Block을 반환하는 경우*/</span>
+<span class="cm">/*free Interface함수명이 'Trace_free'이라 가정*/</span>
+<span class="kt">void</span> <span class="nf">Trace_free</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">mem</span><span class="p">)</span>
+<span class="p">{</span>    
+    <span class="kt">void</span> <span class="o">*</span><span class="n">TraceBlock</span> <span class="o">=</span> <span class="n">mem</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">FindBlock</span><span class="p">(</span><span class="n">TraceBlock</span><span class="p">))</span>
+    <span class="p">{</span>
+       <span class="n">printf</span><span class="p">(</span><span class="s">"등록되지 않은 Block을 반환하였습니다. </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+       <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">BrokenHeadChksum</span><span class="p">(</span><span class="n">TraceBlock</span><span class="p">))</span>
+    <span class="p">{</span>
+       <span class="n">printf</span><span class="p">(</span><span class="s">"memory의 시작주소 이전 주소 을 참조하였습니다.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+       <span class="n">printf</span><span class="p">(</span><span class="s">"이 memory는 %d에서 생성되었습니다. 여기를 확인하세요</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">GetBackTrace</span><span class="p">(</span><span class="n">TraceBlock</span><span class="p">));</span>
+       <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">BrokenTailChksum</span><span class="p">)</span>
+    <span class="p">{</span>
+       <span class="n">printf</span><span class="p">(</span><span class="s">"memory의 크기를 넘어선 주소 을 참조하였습니다.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+       <span class="n">printf</span><span class="p">(</span><span class="s">"이 memory는 %d에서 생성되었습니다. 여기를 확인하세요</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">GetBackTrace</span><span class="p">(</span><span class="n">TraceBlock</span><span class="p">));</span>
+       <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">Free</span><span class="p">(</span><span class="n">GetStartAddressfromTraceBlock</span><span class="p">(</span><span class="n">TraceBlock</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*사용률을 확인하고자 하는경우*/</span>
+<span class="kt">void</span> <span class="nf">Print_TraceBlock</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="n">totalsize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="n">totalnumberof_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">Trace</span> <span class="o">=</span> <span class="n">TraceHead</span><span class="p">;</span> <span class="n">Trace</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="n">Trace</span> <span class="o">=</span> <span class="n">GetNextListLink</span><span class="p">(</span><span class="n">Trace</span><span class="p">))</span>
+  <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"이 memory는 %d에서 생성되었습니다</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">GetBackTrace</span><span class="p">(</span><span class="n">Trace</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"사이즈는 %d입니다.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">GetUserBlockSize</span><span class="p">(</span><span class="n">Trace</span><span class="p">));</span>
+		
+    <span class="n">totalsize</span> <span class="o">+=</span> <span class="n">GetUserBlockSize</span><span class="p">(</span><span class="n">Trace</span><span class="p">);</span>
+    <span class="n">totalnumberof_count</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"전체 Block의 갯수는 %d개 입니다.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">totalnumberof_count</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"전체 할당사이즈는 %dByte입니다.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">totalsize</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="4-as-i-finished">#4 As I Finished…</h3>
+<p>음…  Memory사용이 중요한건 누구나가 할거다….!</p>
+
+<p>그냥.. 이렇게 하니까 편하더라구…=_=</p>
+
+<p>나는 #3의 내용에 좀 더 살 붙이기 해서 사용한다. 
+궁금하다면 <a href="https://github.com/whois-hm/workqueue/blob/master/Heap.c">요기로</a></p>
+
+            </article>
+
+            <!--
+<section class="share">
+    <h3>Share</h3>
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:4000/heap-manage/%20via%20&#64;&hashtags="
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
+        <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
+    </a>
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/heap-manage/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
+        <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
+    </a>
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:4000/heap-manage/"
+    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
+        <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
+    </a>
+</section>
+-->
+            <!--
+<section class="author" itemprop="author">
+    <div class="details" itemscope itemtype="http://schema.org/Person">
+        <img itemprop="image" class="img-rounded" src="/assets/img/blog-author.jpg" alt="">
+        <p class="def">Author</p>
+        <h3 class="name">
+            <a itemprop="name" href="https://plus.google.com/+/posts">hmkwon</a>
+        </h3>
+        <p class="desc">^_^</p>
+        <p><a itemprop="email" class="email" href="mailto:khm767@gmail.com">khm767@gmail.com</a></p>
+        <p><a itemprop="github" class="github" href="https://github.com/">github.com/</a></p>
+    </div>
+</section>
+-->
+
+             
+                <!--
+<section class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+</section>
+<script type="text/javascript">
+    var disqus_loaded = false;
+
+    function load_disqus()
+    {
+        disqus_loaded = true;
+        var disqus_shortname = '';
+        var disqus_title = '';
+        var disqus_url = '/heap-manage/';
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        var ldr = document.getElementById('disqus_loader');
+    };
+    window.onscroll = function(e) {
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 800)) {
+            //hit bottom of page
+            if (disqus_loaded==false)
+                load_disqus()
+        }
+    };
+</script>
+-->
+
+            
+            <footer>
+    <p></a></p>
+</footer>
+<script src="/assets/js/main.js"></script>
+        </section>
+    </body>
+</html>
