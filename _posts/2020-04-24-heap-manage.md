@@ -228,12 +228,12 @@ Memory Block을 요청할 당시의 호출 Stack이 필요하므로   backtrace�
 <br>
 그럼 이제 Memory Block을 디자인 해보자.
 
-|16 Address + User Block Size|Tail Checksum|4Byte|사용자가 요청한 Block사이즈를 넘어서 참조했는지 확인 하기위한 Checksum  변수|
-|16 Address|User Block|가변Byte|사용자에게 Return해줄 StartAddress|
-|12 Address|Head Checksum|4Byte|사용자가 StartAddress 이전의 주소를 참조했는지 확인 하기 위한 Checksum변수|
+|16 Address + 가변|Tail Checksum|4Byte|Block사이즈 OverFlow Checksum |
+|16 Address|User Block|가변Byte|Return StartAddress|
+|12 Address|Head Checksum|4Byte|StartAddress UnderFlow Checksum|
 |8 Address|User Block Size|4Byte|User Block의 사이즈|
-|4 Address|BackTrace |4Byte|호출 스택을 저장하기위한 변수|
-|0 Address|List Link|4Byte|Block의 Link정보를 담는 변수|
+|4 Address|BackTrace |4Byte|호출 스택|
+|0 Address|List Link|4Byte|Block의 Link정보|
 
 편의상 0번지 주소를 Block의 Start Address로하여 Metadata(20Byte)와 사용자가 요청한 크기의 만큼의 Block(가변Byte)을 생성했다.
 우리는 위 Block을 내부의 List Link정보로 전체를 운영할것이고, 사용자에게는 항상 Block의 16번지Address를 반환해주면서

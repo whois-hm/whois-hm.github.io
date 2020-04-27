@@ -341,22 +341,22 @@ List 자료구조가 필요하며, 요청한 사이즈만큼만을 사용하였�
 <table>
   <tbody>
     <tr>
-      <td>16 Address + User Block Size</td>
+      <td>16 Address + 가변</td>
       <td>Tail Checksum</td>
       <td>4Byte</td>
-      <td>사용자가 요청한 Block사이즈를 넘어서 참조했는지 확인 하기위한 Checksum  변수</td>
+      <td>Block사이즈 OverFlow Checksum</td>
     </tr>
     <tr>
       <td>16 Address</td>
       <td>User Block</td>
       <td>가변Byte</td>
-      <td>사용자에게 Return해줄 StartAddress</td>
+      <td>Return StartAddress</td>
     </tr>
     <tr>
       <td>12 Address</td>
       <td>Head Checksum</td>
       <td>4Byte</td>
-      <td>사용자가 StartAddress 이전의 주소를 참조했는지 확인 하기 위한 Checksum변수</td>
+      <td>StartAddress UnderFlow Checksum</td>
     </tr>
     <tr>
       <td>8 Address</td>
@@ -368,13 +368,13 @@ List 자료구조가 필요하며, 요청한 사이즈만큼만을 사용하였�
       <td>4 Address</td>
       <td>BackTrace</td>
       <td>4Byte</td>
-      <td>호출 스택을 저장하기위한 변수</td>
+      <td>호출 스택</td>
     </tr>
     <tr>
       <td>0 Address</td>
       <td>List Link</td>
       <td>4Byte</td>
-      <td>Block의 Link정보를 담는 변수</td>
+      <td>Block의 Link정보</td>
     </tr>
   </tbody>
 </table>

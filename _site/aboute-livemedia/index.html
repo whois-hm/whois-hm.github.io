@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/BlogPosting" class="post-Heap">
+<html lang="en" itemscope itemtype="http://schema.org/BlogPosting" class="post-livemedia">
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Heap</title>
-    <meta name="description" content="^_^">
+    <title>Aboute Livemedia</title>
+    <meta name="description" content="Description Repository "livemedia"">
 
     <!-- Google Authorship Markup -->
     <link rel="author" href="https://plus.google.com/+?rel=author">
@@ -14,24 +14,24 @@
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@">
-    <meta name="twitter:title" content="Heap">
-    <meta name="twitter:description" content="^_^">
+    <meta name="twitter:title" content="Aboute Livemedia">
+    <meta name="twitter:description" content="Description Repository "livemedia"">
     
     <meta property="twitter:image:src" content="http://localhost:4000/assets/img/blog-image.png">
     
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="http://localhost:4000/category/Heap/">
-    <meta property="og:title" content="Heap">
+    <meta property="og:url" content="http://localhost:4000/aboute-livemedia/">
+    <meta property="og:title" content="Aboute Livemedia">
     
     <meta property="og:image" content="http://localhost:4000/assets/img/blog-image.png">
     
-    <meta property="og:description" content="^_^">
+    <meta property="og:description" content="Description Repository "livemedia"">
     <meta property="og:site_name" content="API Document">
 
     <!-- Social: Google+ / Schema.org  -->
-    <meta itemprop="name" content="Heap"/>
-    <meta itemprop="description" content="^_^">
+    <meta itemprop="name" content="Aboute Livemedia"/>
+    <meta itemprop="description" content="Description Repository "livemedia"">
     <meta itemprop="image" content="http://localhost:4000/assets/img/blog-image.png"/>
 
     <!-- Favicon -->
@@ -54,10 +54,10 @@
     <meta name="msapplication-wide310x150logo" content="widetile.png" />
     <meta name="msapplication-square310x310logo" content="largetile.png" />
     <!-- Android Lolipop Theme Color -->
-    <meta name="theme-color" content="">
+    <meta name="theme-color" content="#B31917">
 
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/category/Heap/">
+    <link rel="canonical" href="http://localhost:4000/aboute-livemedia/">
     <link rel="alternate" type="application/rss+xml" title="API Document" href="http://localhost:4000/feed.xml" />
 </head>
 
@@ -116,42 +116,53 @@
 <header class="header-post" role="banner">
      <div class="content">
         
-        <h1 class="post-title" itemprop="name">Heap</h1>
-        <p itemprop="description" class="subtitle"></p>
+            <time itemprop="datePublished" datetime="2020-04-27T00:00:00+09:00" class="date">27 Apr 2020</time>
+        
+        <h1 class="post-title" itemprop="name">Aboute Livemedia</h1>
+        <p itemprop="description" class="subtitle">Description Repository "livemedia"</p>
     </div>
 </header>
         <section class="post">
 
             <article role="article" id="post" class="post-content" itemprop="articleBody">
-                <main class="home" id="scroll" role="main" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">
-    <h1 class="title-category">Heap</h1>
-    <div id="grid" class="row flex-grid">
-    
-        
-    
-        
-    
-        
-    
-        
-    
-    </div>
-</main>
+                <h2 id="1intro">#1Intro</h2>
+<p>이 Repository는 “Media Player”를 구현하기위한 개인 Study Project이다. 
+목적은 단순 “Media Player”이지만 이를 시작하게 된 계기는 정말 다양하다.</p>
+
+<p>c/c++ STL, MultiThread기반 설계, <a href="http://whois-hm.github.io/about-workqueue/">Workqueue 내용 증명,</a> 
+SystemResource처리, Class Design, 주 업무 이해도를 높이기 위한
+Audio/Video IO, Muxing / DeMuxing등 을 학습하며,  개인 Skill up과 동시에  산출물을 얻기 위함이다.</p>
+
+<p>주 언어는 c/c++ STL에 기반하여 설계하였고, 그렇기때문에 별도의 Library가아닌 Process에서 직접 기능단위별
+Access가 가능하도록 Header에 내용을 담았다.</p>
+
+<p>Project의 목적이 “Media”이므로 <br />
+Codec,  En/Decoder, Muxer/DeMuxer등은  <a href="https://www.ffmpeg.org/">FFMPEG</a><br />
+NetWork Streaming(RTSP)는 <a href="http://www.live555.com/">Live555</a><br />
+GUI Display는 Desktop <a href="https://www.libsdl.org/">SDL2</a>, Embedded <a href="https://github.com/whois-hm/am335x">Beaglebone Black</a><br />
+을 사용하였다.</p>
+
+<p>현재까진 Local MediaFile, RTSP Client, Camera Player와 RTSP Server의 기본기능이  Porting되어 있으며, 
+이에 대한 Output Frameork가 Porting되어 있고, 앞으로도 개인 시간을 쪼개 더 많은 기능을 학습, Porting할 예정이다.<br />
+<a href="https://github.com/whois-hm/livemedia">livemedia</a></p>
+
+<h2 id="2class-simple-diagram">#2Class Simple Diagram</h2>
+<p><img src="../images/livemedia_class_simple_diagram.png" alt="livemedia diagram" /></p>
 
             </article>
 
             <!--
 <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:4000/category/Heap/%20via%20&#64;&hashtags="
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:4000/aboute-livemedia/%20via%20&#64;&hashtags="
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/category/Heap/"
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/aboute-livemedia/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:4000/category/Heap/"
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:4000/aboute-livemedia/"
     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
         <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
     </a>
@@ -186,7 +197,7 @@
         disqus_loaded = true;
         var disqus_shortname = '';
         var disqus_title = '';
-        var disqus_url = '/category/Heap/';
+        var disqus_url = '/aboute-livemedia/';
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
