@@ -5,13 +5,13 @@
     <description>^_^</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 27 Apr 2020 18:50:42 +0900</pubDate>
-    <lastBuildDate>Mon, 27 Apr 2020 18:50:42 +0900</lastBuildDate>
+    <pubDate>Tue, 28 Apr 2020 14:11:36 +0900</pubDate>
+    <lastBuildDate>Tue, 28 Apr 2020 14:11:36 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
     
       <item>
         <title>Aboute Livemedia</title>
-        <description>&lt;h2 id=&quot;1intro&quot;&gt;#1Intro&lt;/h2&gt; &lt;p&gt;이 Repository는 “Media Player”를 구현하기위한 개인 Study Project이다. 목적은 단순 “Media Player”이지만 이를 시작하게 된 계기는 정말 다양하다.&lt;/p&gt; &lt;p&gt;c/c++ STL, MultiThread기반 설계, &lt;a href=&quot;http://whois-hm.github.io/about-workqueue/&quot;&gt;Workqueue 내용 증명,&lt;/a&gt; SystemResource처리, Class Design, 주 업무 이해도를 높이기 위한 Audio/Video IO, Muxing / DeMuxing등 을 학습하며, 개인 Skill up과 동시에 산출물을 얻기 위함이다.&lt;/p&gt; &lt;p&gt;주 언어는 c/c++ STL에 기반하여 설계하였고, 그렇기때문에 별도의 Library가아닌 Process에서 직접 기능단위별 Access가 가능하도록 Header에 내용을 담았다.&lt;/p&gt; &lt;p&gt;Project의 목적이 “Media”이므로 &lt;br /&gt; Codec, En/Decoder, Muxer/DeMuxer등은 &lt;a href=&quot;https://www.ffmpeg.org/&quot;&gt;FFMPEG&lt;/a&gt;&lt;br /&gt; NetWork Streaming(RTSP)는 &lt;a href=&quot;http://www.live555.com/&quot;&gt;Live555&lt;/a&gt;&lt;br /&gt; GUI Display는 Desktop &lt;a href=&quot;https://www.libsdl.org/&quot;&gt;SDL2&lt;/a&gt;, Embedded &lt;a href=&quot;https://github.com/whois-hm/am335x&quot;&gt;Beaglebone Black&lt;/a&gt;&lt;br /&gt; 을 사용하였다.&lt;/p&gt; &lt;p&gt;현재까진 Local MediaFile, RTSP Client,...</description>
+        <description>&lt;h2 id=&quot;1intro&quot;&gt;#1Intro&lt;/h2&gt; &lt;p&gt;이 Repository는 “Media Player”를 구현하기위한 개인 Study Project이다. 목적은 단순 “Media Player”이지만 이를 시작하게 된 계기는 정말 다양하다.&lt;/p&gt; &lt;p&gt;c/c++ STL, MultiThread기반 설계, &lt;a href=&quot;http://whois-hm.github.io/about-workqueue/&quot;&gt;Workqueue 내용 증명,&lt;/a&gt; SystemResource처리, Class Design, 주 업무 이해도를 높이기 위한 Audio/Video IO, Muxing / DeMuxing등 을 학습하며, 개인 Skill up과 동시에 산출물을 얻기 위함이다.&lt;/p&gt; &lt;p&gt;주 언어는 c/c++ STL에 기반하여 설계하였고, 그렇기때문에 별도의 Library가아닌 Process에서 직접 기능단위별 Access가 가능하도록 Header에 내용을 담았다.&lt;/p&gt; &lt;p&gt;Project의 목적이 “Media”이므로 &lt;br /&gt; Codec, En/Decoder, Muxer/DeMuxer등은 &lt;a href=&quot;https://www.ffmpeg.org/&quot;&gt;FFMPEG&lt;/a&gt;&lt;br /&gt; NetWork Streaming(RTSP)는 &lt;a href=&quot;http://www.live555.com/&quot;&gt;Live555&lt;/a&gt;&lt;br /&gt; GUI Display는 Desktop &lt;a href=&quot;https://www.libsdl.org/&quot;&gt;SDL2&lt;/a&gt;, Embedded &lt;a href=&quot;https://github.com/whois-hm/am335x&quot;&gt;Beaglebone Black&lt;/a&gt;&lt;br /&gt; 을 사용하였다.&lt;/p&gt; &lt;h2 id=&quot;2class-simple-diagram&quot;&gt;#2Class Simple Diagram&lt;/h2&gt; &lt;p&gt;&lt;img...</description>
         <pubDate>Mon, 27 Apr 2020 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/aboute-livemedia/</link>
         <guid isPermaLink="true">http://localhost:4000/aboute-livemedia/</guid>

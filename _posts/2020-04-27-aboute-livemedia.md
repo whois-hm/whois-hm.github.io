@@ -25,9 +25,34 @@ NetWork Streaming(RTSP)는 [Live555](http://www.live555.com/)<br>
 GUI Display는 Desktop [SDL2](https://www.libsdl.org/), Embedded [Beaglebone Black](https://github.com/whois-hm/am335x)<br>
 을 사용하였다.
 
-현재까진 Local MediaFile, RTSP Client, Camera Player와 RTSP Server의 기본기능이  Porting되어 있으며, 
-이에 대한 Output Frameork가 Porting되어 있고, 앞으로도 개인 시간을 쪼개 더 많은 기능을 학습, Porting할 예정이다.<br>
-[livemedia](https://github.com/whois-hm/livemedia)
-
 ## #2Class Simple Diagram
 ![livemedia diagram](../images/livemedia_class_simple_diagram.png)
+
+## #3 Main Activity Class Sequence Diagram
+#### <center>local_playback</center>
+####  <center>MediaContainer (mp4, avi)등 동영상 파일을 재생</center>
+![localplayback sequence diagram](../images/local_playing.png)
+
+####  <center>rtsp_playback</center>
+####  <center>RTSP Server수신 Client로 Streaming Data를 재생</center>
+![rtspplayback sequence diagram](../images/rtsp_play.png)
+
+####  <center>uvc_playback</center>
+<center>USB Cam Device Input Data를 재생</center>
+####  ![uvcplayback sequence diagram](../images/uvc.png)
+
+####  <center>mediaserver</center>
+####  <center>RTSPServer로 기본 동영상파일, USB Cam Device, Proxy를 Stream</center>
+![rtspserver sequence diagram](../images/rtspserver.png)
+
+
+## #4 As I Finished...
+OpenSource에서 제공되는 API들을 단위 기능 Class로 분리하고, 이를 조합하여 
+
+현재까진 Local MediaFile, RTSP Client, Camera Player와 RTSP Server의 기본기능이  Porting되어 있고,
+
+이에 대한 Output Frameork가 Porting되어 있다.<br>
+
+앞으로도 개인 시간을 쪼개 더 많은 기능을 학습, Porting할 예정이다.<br>
+
+[livemedia](https://github.com/whois-hm/livemedia)

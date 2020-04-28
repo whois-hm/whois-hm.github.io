@@ -142,12 +142,36 @@ NetWork Streaming(RTSP)는 <a href="http://www.live555.com/">Live555</a><br />
 GUI Display는 Desktop <a href="https://www.libsdl.org/">SDL2</a>, Embedded <a href="https://github.com/whois-hm/am335x">Beaglebone Black</a><br />
 을 사용하였다.</p>
 
-<p>현재까진 Local MediaFile, RTSP Client, Camera Player와 RTSP Server의 기본기능이  Porting되어 있으며, 
-이에 대한 Output Frameork가 Porting되어 있고, 앞으로도 개인 시간을 쪼개 더 많은 기능을 학습, Porting할 예정이다.<br />
-<a href="https://github.com/whois-hm/livemedia">livemedia</a></p>
-
 <h2 id="2class-simple-diagram">#2Class Simple Diagram</h2>
 <p><img src="../images/livemedia_class_simple_diagram.png" alt="livemedia diagram" /></p>
+
+<h2 id="3-main-activity-class-sequence-diagram">#3 Main Activity Class Sequence Diagram</h2>
+<h4 id="local_playback"><center>local_playback</center></h4>
+<h4 id="mediacontainer-mp4-avi등-동영상-파일을-재생"><center>MediaContainer (mp4, avi)등 동영상 파일을 재생</center></h4>
+<p><img src="../images/local_playing.png" alt="localplayback sequence diagram" /></p>
+
+<h4 id="rtsp_playback"><center>rtsp_playback</center></h4>
+<h4 id="rtsp-server수신-client로-streaming-data를-재생"><center>RTSP Server수신 Client로 Streaming Data를 재생</center></h4>
+<p><img src="../images/rtsp_play.png" alt="rtspplayback sequence diagram" /></p>
+
+<h4 id="uvc_playback"><center>uvc_playback</center></h4>
+<center>USB Cam Device Input Data를 재생</center>
+<h4><img src="../images/uvc.png" alt="uvcplayback sequence diagram" /></h4>
+
+<h4 id="mediaserver"><center>mediaserver</center></h4>
+<h4 id="rtspserver로-기본-동영상파일-usb-cam-device-proxy를-stream"><center>RTSPServer로 기본 동영상파일, USB Cam Device, Proxy를 Stream</center></h4>
+<p><img src="../images/rtspserver.png" alt="rtspserver sequence diagram" /></p>
+
+<h2 id="4-as-i-finished">#4 As I Finished…</h2>
+<p>OpenSource에서 제공되는 API들을 단위 기능 Class로 분리하고, 이를 조합하여</p>
+
+<p>현재까진 Local MediaFile, RTSP Client, Camera Player와 RTSP Server의 기본기능이  Porting되어 있고,</p>
+
+<p>이에 대한 Output Frameork가 Porting되어 있다.<br /></p>
+
+<p>앞으로도 개인 시간을 쪼개 더 많은 기능을 학습, Porting할 예정이다.<br /></p>
+
+<p><a href="https://github.com/whois-hm/livemedia">livemedia</a></p>
 
             </article>
 
