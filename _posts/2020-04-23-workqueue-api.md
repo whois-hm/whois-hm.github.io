@@ -387,6 +387,262 @@ Return        : None
 -------------------------------------------------------------------------------------------
 void libwq_print_heap();
 -------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des           : SmartPtr사용을 위한 Golbal값을 초기화한다.
+Return        : None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void SP_using();
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des           : SmartPointer Memory Block을 생성한다.
+Param size    : 사용할 Block Size
+Param refer   : 참조될 카운트 초기값
+Return        : None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void *SP_malloc(size_t size, int refer);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des           : SmartPointer Memory Block의 참조 카운트값을 증가시킨다.
+Param spmem   : "SP_malloc" 통해 반환 받은 Memory Block
+Return        : None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void *SP_ref(void *spmem);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des           : SmartPointer Memory Block의 참조 카운트값을 감소키며,
+                                              참조 카운트가 0이 되면 Memory Block을 해지한다.
+Param spmem   : "SP_malloc" 통해 반환 받은 Memory Block
+Return        : None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void SP_unref(void *spmem);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des           : SmartPointer Memory Block의 참조 카운트값을 감소키며,
+                                              참조 카운트가 0이 되면 Memory Block을 해지한다.
+Param spmem   : "SP_malloc" 통해 반환 받은 Memory Block
+Return        : None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void SP_free(void *spmem);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des           : SmartPtr 사용을 종료하며 "SP_using"에서 생성된 Global값을 해지한다.
+Return        : None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void SP_unused();
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                        : NetWork Group을 생성한다.
+Param max_routeindex       : 생성될 Route Table의 마지막 Index
+Param max_routeparsize     : Route Parameter의 최대 사이즈
+Param phosts               : Router아래 생성될 Host들의 정보를 담는 배열
+Param nhosts               : "phosts"의 갯수
+Param message_decoder      : 타 Group의 Message 수신 Decoder
+Param message_port         : 외부 Group의 Message를 수신할 Port
+Param message_buffer_size  : Message수신 Buffer 사이즈
+Return                     : 성공시 생성된 Router, 실패시 NULL
+*/
+-------------------------------------------------------------------------------------------
+WQ_API struct net_router *NetGroup_router_create(unsigned max_routeindex,
+		unsigned max_routeparsize,
+		struct net_host_register_data *phosts,
+		unsigned nhosts,
+		_router_message_decoder message_decoder,
+		int message_port,
+		unsigned message_buffer_size);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des           : 생성된 NetWork Group을 삭제한다.
+Param router  : "NetGroup_router_create"에서 반환받은 값
+Return        : None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void NetGroup_router_delete(struct net_router ** router);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des            : Local Group unicast를 위한 연결을 시도한다.
+Param router   : "NetGroup_router_create"에서 반환받은 값
+Param hostname :  "net_host_register_data"에 등록된 연결할 Host의 Index
+Return         : 성공시 연결된 Host 실패시 NULL
+*/
+-------------------------------------------------------------------------------------------
+WQ_API struct net_host *NetGroup_host_connect(struct net_router * router,
+		unsigned hostname);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                : "NetGroup_host_connect"를 통해 Host 연결을 끊는다.
+Param targethost   : "NetGroup_host_connect"에서 반환받은 값
+Return             :  None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void NetGroup_host_disconnect(struct net_host **targethost);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                : Local Group간 Unicast를 전송한다.
+Param targethost   : "NetGroup_host_connect"에서 반환받은 값
+Param host         : 자신의 Host 
+Param par          : 전달할 Parameter
+Param npar         : 전달할 Parameter Size
+Param flag         : Nonblocking or Blocking 모드선택
+Return             :  None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void NetGroup_host_unicast(struct net_host *target_host,
+		struct net_host *host,
+		void *par,
+		unsigned npar,
+		unsigned flag);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                : Local Group간 Broadcast를 전송한다.
+Param host         : 자신의 Host 
+Param par          : 전달할 Parameter
+Param npar         : 전달할 Parameter Size
+Return             :  None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void NetGroup_host_broadcast(struct net_host *host,
+		void *par,
+		unsigned npar);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                 : Local Group간 Multicast를 전송한다.
+Param host          : 자신의 Host 
+Param routeindex    : 전달할 Routing Index
+Param par           : 전달할 Parameter
+Param npar          : 전달할 Parameter Size
+Return              :  None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void NetGroup_host_multicast(struct net_host *host,
+		unsigned routeindex,
+		void *par,
+		unsigned npar);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                 : External Group에 Message를 전송한다.
+Param router        : "NetGroup_router_create"에서 반환받은 값
+Param ip            : External Group IP주소
+Param port          : External Group Port번호
+Param par           : 전달할 Parameter
+Param npar          : 전달할 Parameter Size
+Param encoder       : "par"에 전달된 값을 Protocol형태로 변환하는 Callback Encoder
+Return              :  -1 잘못된 Parameter 0 전송실패 1 전송성공
+*/
+-------------------------------------------------------------------------------------------
+WQ_API int NetGroup_router_send_message(struct net_router *router,
+		char const *ip,
+		int port,
+		void *par,
+		unsigned npar,
+		_router_message_encoder encoder);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                : "NetGroup_router_send_message"에서 사용할 Protocol Message Buffer
+                                                              를 생성한다.
+Param want         : 생성할 Buffer의 크기
+Param clear        : 버퍼 Clear여부
+Return             :  None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void NetGroup_router_send_message_buffer_realloc(struct _router_message_buffer *b,
+		unsigned want,
+		int clear);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                 : Local Group간의 Multicast Route Table에 수신을 등록한다.
+Param routeindex    : 등록할 Routing Index
+Param router        : "NetGroup_router_create"에서 반환받은 값
+Param host          : 자신 Host
+Return              : None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void NetGroup_membership_join(unsigned routeindex,
+		struct net_router *router,
+		struct net_host *host);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                 : Local Group간의 Multicast Route Table에 등록을 해지한다.
+Param routeindex    : 해지할 Routing Index
+Param router        : "NetGroup_router_create"에서 반환받은 값
+Param host          : 자신 Host
+Return              : None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void NetGroup_membership_drop(unsigned routeindex,
+		struct net_router *router,
+		struct net_host *host);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                 : 자신의 Scheduler에 Timer를 생성한다.
+Param host          : 자신 Host
+Param fn_alarm      : Timer 만료후 호출될 Callback
+Param mstime        : Timer 생성이후 만료될때 까지의 Milliseconds
+Param repeat        : Timer 반복호출 여부
+Return              : 성공시 생성된 Timer 실패시 NULL
+*/
+-------------------------------------------------------------------------------------------
+WQ_API struct net_host_alarm *NetGroup_host_alarm_start(struct net_host *host,
+		void (*fn_alarm)(struct net_router *router, struct net_host *host, void *meta),
+		unsigned mstime,
+		int repeat);
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+/*
+Des                 : 생성된 Timer를 제거한다.
+Param host          : 자신 Host
+Param alarm         : "NetGroup_host_alarm_start"를 통해 반환받은 Timer
+Return               : None
+*/
+-------------------------------------------------------------------------------------------
+WQ_API void NetGroup_host_alarm_end(struct net_host *host,
+		struct net_host_alarm **alarm);
+-------------------------------------------------------------------------------------------
+
+
+
 ```
 
 
