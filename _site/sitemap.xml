@@ -6,6 +6,10 @@
         </url>
     
         <url>
+            <loc>http://localhost:4000/category/Netgroup/</loc>
+        </url>
+    
+        <url>
             <loc>http://localhost:4000/about/index.html</loc>
         </url>
     
@@ -78,6 +82,10 @@
         </url>
     
     
+        <url>
+            <loc>http://localhost:4000/netgroup-framework/</loc>
+        </url>
+  
         <url>
             <loc>http://localhost:4000/aboute-livemedia/</loc>
         </url>

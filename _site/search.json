@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "NetGroup",
+      "tags"     : "",
+      "categories"     : "framework",
+      "url"      : "/netgroup-framework/",
+      "date"     : "28 Jul 2020"
+    } ,
+  
+    {
       "title"    : "Aboute Livemedia",
       "tags"     : "",
       "categories"     : "livemedia",

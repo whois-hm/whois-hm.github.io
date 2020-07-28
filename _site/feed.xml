@@ -5,9 +5,19 @@
     <description>^_^</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 28 Jul 2020 09:32:49 +0900</pubDate>
-    <lastBuildDate>Tue, 28 Jul 2020 09:32:49 +0900</lastBuildDate>
+    <pubDate>Tue, 28 Jul 2020 17:58:29 +0900</pubDate>
+    <lastBuildDate>Tue, 28 Jul 2020 17:58:29 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>NetGroup</title>
+        <description>&lt;h2 id=&quot;1intro&quot;&gt;#1Intro&lt;/h2&gt; &lt;p&gt;프로젝트를 진행할때 가장 중요한것은 “구조설계”이다. Framework는 이 구조설계의 기반이 되며, 작성될 코드의 방향을 제시한다. 여러 Opensource에서 Framework를 제공하기 때문에 우리는 진행할 프로젝트의 컨셉에 맞는 Framework를 선정하거나 선정된 Framework를 Customize하여 사용하기도 하고, 때론 직접 제작하여 사용하기도 한다. 이번 Post에서는 “NetGroup”이라는 직접 만들어본 Event Report Framework를 소개해 보고자 한다.&lt;/p&gt; &lt;h2 id=&quot;2-whats-netgroup&quot;&gt;#2 What’s NetGroup&lt;/h2&gt; &lt;p&gt;“NetGroup”이란 무엇인가? 간단히 말하자면 Thread, Process간의 Communication Group이며 여기에 Network 개념을 도입하여, Unicast, BroadCast, Multicast 방식으로 Event를 송/수신하여 원하는 동작을 수행시킬수 있도록 하는 Framework이다.&lt;/p&gt; &lt;p&gt;이 Framework는 각 기능단위별 모듈을 “Host”라 칭하는 Thread로 생성하며, 이러한 “Host”들은 Router라는 한개의 단위에 등록되어 Thread간 Event 송수신이 가능한 Network Group을 이룰수 있도록하고,...</description>
+        <pubDate>Tue, 28 Jul 2020 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/netgroup-framework/</link>
+        <guid isPermaLink="true">http://localhost:4000/netgroup-framework/</guid>
+        
+        
+      </item>
     
       <item>
         <title>Aboute Livemedia</title>
