@@ -30,6 +30,14 @@
       "categories"     : "wq",
       "url"      : "/about-workqueue/",
       "date"     : "21 Apr 2020"
+    } ,
+  
+    {
+      "title"    : "Smart Pointer",
+      "tags"     : "",
+      "categories"     : "pointer",
+      "url"      : "/smartpointer/",
+      "date"     : "27 Jan 2020"
     } 
   
 ]
