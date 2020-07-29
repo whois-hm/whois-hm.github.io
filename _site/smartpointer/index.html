@@ -127,7 +127,7 @@
             <article role="article" id="post" class="post-content" itemprop="articleBody">
                 <h2 id="1-intro">#1 Intro</h2>
 
-<p>우리는 <a href="https://github.com/whois-hm/heap-manage">여기서</a>  Virtual Memory를 요청하고 반환받아 User 영역에서 사용되는 Heap Memory라는 개념을 알아봄과 동시에 
+<p>우리는 <a href="https://whois-hm.github.io/heap-manage">여기서</a>  Virtual Memory를 요청하고 반환받아 User 영역에서 사용되는 Heap Memory라는 개념을 알아봄과 동시에 
 항상 요청/해지, 즉 사용을 완료한 Block은 다시 반환하여 다시 가용가능한 Block으로 만들어줘함을 확인하였다.
 보통 Block을 생성한 주체가 이에 대한 해지의 책임을 가져가는것이 일반적이지만,  n개의 Thread를 사용하게 되고, 서로 관계를 갖기 시작하면서 Free Point가 애매모호 해지거나, 
 경우에 따라 거대한 Block을 운영하는 경우 운영방법 따라 메모리 효율성이 떨어질 가능성이 존재한다.
@@ -143,7 +143,7 @@
 
 <p>한가지 프로세스를 만든다 가정해보자. 
 이 프로세스는 한개의 Pixel Frame입력장치에서 입력을 받아 2개의 출력장치로 PixelFrame을 내보내 동영상을 재생하는 프로그램이다. 
-자. 위 모든 과정을 하나의 Thread에서 처리하면 안된다는것을 우리는 <a href="https://github.com/whois-hm/about-workqueue">여기</a> #1 Thread의 병렬처리 필요성에서 확인하였다. 
+자. 위 모든 과정을 하나의 Thread에서 처리하면 안된다는것을 우리는 <a href="https://whois-hm.github.io/about-workqueue">여기</a> #1 Thread의 병렬처리 필요성에서 확인하였다. 
 그럼 생각해보자 우리는 위의 링그 #1 그림처럼 입력장치에서 Data를 가져오는 Thread하나, 출력장치로 Data를 전달하는 Thread 두개 크게 이렇게 프로세스를 구성하게 될 것이다. 
 위 구성은 입력장치 Thread에서 Data Buffer를 생성하여 2개의 Thread로 전달하게 될 것인데,</p>
 
