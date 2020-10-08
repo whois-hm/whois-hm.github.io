@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "liveplatform",
+      "tags"     : "",
+      "categories"     : "liveplatform",
+      "url"      : "/liveplatform/",
+      "date"     : "08 Oct 2020"
+    } ,
+  
+    {
       "title"    : "NetGroup",
       "tags"     : "",
       "categories"     : "framework",
