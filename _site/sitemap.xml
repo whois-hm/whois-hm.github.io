@@ -87,10 +87,6 @@
     
     
         <url>
-            <loc>http://localhost:4000/About-Me/</loc>
-        </url>
-  
-        <url>
             <loc>http://localhost:4000/liveplatform/</loc>
         </url>
   

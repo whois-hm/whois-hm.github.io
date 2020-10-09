@@ -5,19 +5,9 @@
     <description>^_^</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 09 Oct 2020 17:25:39 +0900</pubDate>
-    <lastBuildDate>Fri, 09 Oct 2020 17:25:39 +0900</lastBuildDate>
+    <pubDate>Fri, 09 Oct 2020 17:32:59 +0900</pubDate>
+    <lastBuildDate>Fri, 09 Oct 2020 17:32:59 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
-    
-      <item>
-        <title>About Me</title>
-        <description>&lt;h2 id=&quot;1career&quot;&gt;#1Career&lt;/h2&gt; &lt;p&gt;About 7 year&lt;/p&gt; &lt;h2 id=&quot;language&quot;&gt;#Language&lt;/h2&gt; &lt;p&gt;C/C++, STL, Shell&lt;/p&gt; &lt;h2 id=&quot;operating-system&quot;&gt;#Operating System&lt;/h2&gt; &lt;p&gt;Linux, Embedded Linux&lt;/p&gt; &lt;h2 id=&quot;skill-tag&quot;&gt;#Skill Tag&lt;/h2&gt; &lt;p&gt;Qt, Framework, Network, RS485, FFMPEG, LIVE555, SDL, Media, RTSP&lt;/p&gt; &lt;h2 id=&quot;history&quot;&gt;#History&lt;/h2&gt; &lt;hr style=&quot;border: solid 1px blue;&quot; /&gt; &lt;h3 id=&quot;media-streaming-modules개인-project&quot;&gt;Media Streaming Modules(개인 Project)&lt;br /&gt;&lt;/h3&gt; &lt;hr style=&quot;border: solid 1px blue;&quot; /&gt; &lt;p&gt;기능&lt;br /&gt; 1.Event기반 Programming&lt;br /&gt; 2.Event기반의 MultiMedia&lt;br /&gt; a.Codec&lt;br /&gt; b.Muxer / DeMuxer&lt;br /&gt; c.EnCoder / Decoder&lt;br /&gt; d.MediaFile Play&lt;br /&gt; e.RTSP Play&lt;br /&gt; f.UVC Play&lt;br /&gt; g.RTSP Server&lt;br /&gt; &lt;br /&gt; 기반&lt;br /&gt; C/C++11 STL&lt;br /&gt; FFMPEG&lt;br /&gt; LIVE555&lt;br /&gt; SDL&lt;br /&gt; Link: Github https://github.com/whois-hm&lt;br /&gt; Portfolio: https://whois-hm.github.io&lt;br /&gt; &lt;br /&gt;...</description>
-        <pubDate>Fri, 09 Oct 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/About-Me/</link>
-        <guid isPermaLink="true">http://localhost:4000/About-Me/</guid>
-        
-        
-      </item>
     
       <item>
         <title>liveplatform</title>
