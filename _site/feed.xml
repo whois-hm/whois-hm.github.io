@@ -5,25 +5,48 @@
     <description>^_^</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 08 Oct 2020 19:30:48 +0900</pubDate>
-    <lastBuildDate>Thu, 08 Oct 2020 19:30:48 +0900</lastBuildDate>
+    <pubDate>Fri, 09 Oct 2020 17:25:39 +0900</pubDate>
+    <lastBuildDate>Fri, 09 Oct 2020 17:25:39 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>About Me</title>
+        <description>&lt;h2 id=&quot;1career&quot;&gt;#1Career&lt;/h2&gt; &lt;p&gt;About 7 year&lt;/p&gt; &lt;h2 id=&quot;language&quot;&gt;#Language&lt;/h2&gt; &lt;p&gt;C/C++, STL, Shell&lt;/p&gt; &lt;h2 id=&quot;operating-system&quot;&gt;#Operating System&lt;/h2&gt; &lt;p&gt;Linux, Embedded Linux&lt;/p&gt; &lt;h2 id=&quot;skill-tag&quot;&gt;#Skill Tag&lt;/h2&gt; &lt;p&gt;Qt, Framework, Network, RS485, FFMPEG, LIVE555, SDL, Media, RTSP&lt;/p&gt; &lt;h2 id=&quot;history&quot;&gt;#History&lt;/h2&gt; &lt;hr style=&quot;border: solid 1px blue;&quot; /&gt; &lt;h3 id=&quot;media-streaming-modules개인-project&quot;&gt;Media Streaming Modules(개인 Project)&lt;br /&gt;&lt;/h3&gt; &lt;hr style=&quot;border: solid 1px blue;&quot; /&gt; &lt;p&gt;기능&lt;br /&gt; 1.Event기반 Programming&lt;br /&gt; 2.Event기반의 MultiMedia&lt;br /&gt; a.Codec&lt;br /&gt; b.Muxer / DeMuxer&lt;br /&gt; c.EnCoder / Decoder&lt;br /&gt; d.MediaFile Play&lt;br /&gt; e.RTSP Play&lt;br /&gt; f.UVC Play&lt;br /&gt; g.RTSP Server&lt;br /&gt; &lt;br /&gt; 기반&lt;br /&gt; C/C++11 STL&lt;br /&gt; FFMPEG&lt;br /&gt; LIVE555&lt;br /&gt; SDL&lt;br /&gt; Link: Github https://github.com/whois-hm&lt;br /&gt; Portfolio: https://whois-hm.github.io&lt;br /&gt; &lt;br /&gt;...</description>
+        <pubDate>Fri, 09 Oct 2020 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/About-Me/</link>
+        <guid isPermaLink="true">http://localhost:4000/About-Me/</guid>
+        
+        
+      </item>
     
       <item>
         <title>liveplatform</title>
         <description>&lt;h2 id=&quot;1-intro&quot;&gt;#1 Intro&lt;/h2&gt;
-&lt;p&gt;스트리밍 서비스 플래폼 구성&lt;/p&gt;
+&lt;p&gt;RTSP 스트리밍 서비스 플래폼 구성&lt;/p&gt;
 
-&lt;h2 id=&quot;2-platform-design&quot;&gt;#2 Platform Design&lt;/h2&gt;
+&lt;p&gt;Repository : &lt;a href=&quot;https://github.com/whois-hm/live_platform&quot;&gt;liveplatform&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-environment&quot;&gt;#2 Environment&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Test 환경         :  Linux OS 32bit / Linux OS 64bit / Linux OS armv7l Embedded&lt;/li&gt;
+  &lt;li&gt;Core Media Source Repository : &lt;a href=&quot;https://github.com/whois-hm/livemedia&quot;&gt;livemedia&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Core Media Source  Description :  &lt;a href=&quot;http://whois-hm.github.io/aboute-livemedia/&quot;&gt;livemedia description&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Core Workqueue Source Repository :  &lt;a href=&quot;https://github.com/whois-hm/workqueue&quot;&gt;workqueue&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Core Workqueue Source Description : &lt;a href=&quot;http://whois-hm.github.io/about-workqueue/&quot;&gt;workqueue description&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Gui (Qt)&lt;/li&gt;
+  &lt;li&gt;HTTP / JSON(POCO)&lt;/li&gt;
+  &lt;li&gt;동영상 화면 녹화 (vlc)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-platform-design&quot;&gt;#3 Platform Design&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;../images/liveplatform.png&quot; alt=&quot;netgroup&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;2-service-video&quot;&gt;#2 Service Video&lt;/h2&gt;
+&lt;h2 id=&quot;4-service-video&quot;&gt;#4 Service Video&lt;/h2&gt;
 
 &lt;html&gt;
 	&lt;head&gt;
 		&lt;/head&gt;
 	&lt;body&gt;
-&lt;video src=&quot;../images/liveplatform_sample.mp4&quot; type=&quot;video/mp4&quot; width=&quot;400&quot; height=&quot;400&quot; controls=&quot;&quot;&gt;&lt;/video&gt;
+&lt;video src=&quot;../images/liveplatform_sample.mp4&quot; type=&quot;video/ogg&quot; width=&quot;400&quot; height=&quot;400&quot; controls=&quot;&quot;&gt;&lt;/video&gt;
 		&lt;/body&gt;
 	&lt;/html&gt;
 </description>

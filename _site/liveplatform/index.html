@@ -126,18 +126,31 @@
 
             <article role="article" id="post" class="post-content" itemprop="articleBody">
                 <h2 id="1-intro">#1 Intro</h2>
-<p>스트리밍 서비스 플래폼 구성</p>
+<p>RTSP 스트리밍 서비스 플래폼 구성</p>
 
-<h2 id="2-platform-design">#2 Platform Design</h2>
+<p>Repository : <a href="https://github.com/whois-hm/live_platform">liveplatform</a></p>
+<h2 id="2-environment">#2 Environment</h2>
+<ul>
+  <li>Test 환경         :  Linux OS 32bit / Linux OS 64bit / Linux OS armv7l Embedded</li>
+  <li>Core Media Source Repository : <a href="https://github.com/whois-hm/livemedia">livemedia</a></li>
+  <li>Core Media Source  Description :  <a href="http://whois-hm.github.io/aboute-livemedia/">livemedia description</a></li>
+  <li>Core Workqueue Source Repository :  <a href="https://github.com/whois-hm/workqueue">workqueue</a></li>
+  <li>Core Workqueue Source Description : <a href="http://whois-hm.github.io/about-workqueue/">workqueue description</a></li>
+  <li>Gui (Qt)</li>
+  <li>HTTP / JSON(POCO)</li>
+  <li>동영상 화면 녹화 (vlc)</li>
+</ul>
+
+<h2 id="3-platform-design">#3 Platform Design</h2>
 <p><img src="../images/liveplatform.png" alt="netgroup" /></p>
 
-<h2 id="2-service-video">#2 Service Video</h2>
+<h2 id="4-service-video">#4 Service Video</h2>
 
 <html>
 	<head>
 		</head>
 	<body>
-<video src="../images/liveplatform_sample.mp4" type="video/mp4" width="400" height="400" controls=""></video>
+<video src="../images/liveplatform_sample.mp4" type="video/ogg" width="400" height="400" controls=""></video>
 		</body>
 	</html>
 
